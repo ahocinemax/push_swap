@@ -35,5 +35,5 @@ void	ft_push(int *tab_a, int *tab_b)
 
 void	ft_shift()
 {
-
+	;
 }

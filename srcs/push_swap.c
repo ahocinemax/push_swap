@@ -12,7 +12,9 @@
 
 #include "../includes/push_swap.h"
 
-int	main(void)
+int	main(int argc, char *argv[])
 {
+	if (argc <= 1)
+		ft_putstr_fd("");
 	return (0);
 }

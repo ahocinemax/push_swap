@@ -11,4 +11,30 @@
 /* ************************************************************************** */
 
 #include <unistd.h>
+#include "../libft/libft.h"
+
+
+#define _STD_OUT	1
+
+typedef struct	s_list
+{
+	struct s_list	*prev;
+	struct s_list	*next;
+	int				content;
+}					t_list;
+
+typedef struct s_stack
+{
+	struct s_stack	*next;
+	char			*str;
+}					t_stack;
+
+typedef struct s_data
+{
+	int				min;
+	int				max;
+	int				c_min;
+	int				c_max;
+	int				chunk;
+}					t_data;
 

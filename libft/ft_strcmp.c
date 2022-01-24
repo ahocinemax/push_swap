@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_is_sort.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahocine <ahocine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/24 15:20:39 by ahocine           #+#    #+#             */
-/*   Updated: 2022/01/24 15:20:56 by ahocine          ###   ########.fr       */
+/*   Created: 2022/01/24 15:56:15 by ahocine           #+#    #+#             */
+/*   Updated: 2022/01/24 16:04:33 by ahocine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_is_sort(t_list *lst)
+int	ft_strcmp(char *s1, char *s2)
 {
-	t_list	*last;
+	int	i;
 
-	last = ft_lstlast(lst);
-	while (lst != last)
-	{
-		if (lst->content < lst->next->content)
-			lst = lst->next;
-		else
-			return (0);
-	}
-	return (1);
+	i = 0;
+	while (s1[i] && s2[i] && s1[i] == s2[i])
+		i++;
+	return (s1[i] - s2[i]);
 }

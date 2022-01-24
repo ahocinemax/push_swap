@@ -12,24 +12,26 @@
 
 #include "../includes/push_swap.h"
 
-int	ft_is_sort(t_list *lst)
+int	ft_check_double(char **str, int size)
 {
-	t_list	*last;
+	int	i;
+	int	j;
 
-	last = ft_lstlast(lst);
-	while (lst != last)
+	i = 0;
+	while (i < size)
 	{
-		if (lst->content < lst->next->content)
-			lst = lst->next;
-		else
-			return (0);
+		j = i + 1;
+		while (j < size)
+		{
+			if (ft_strcmp(str[i], str[j]) == 0)
+				return (1);
+		}
 	}
-	return (1);
+	return (0);
 }
 
 void	ft_swap(int *tab_to_swap)
 {
-	// SWAP LES DEUX PREMIERES VALEURS
 	int	tmp;
 
 	if (!tab_to_swap[2])
@@ -46,9 +48,4 @@ void	ft_push(int *tab_a, int *tab_b)
 	tmp = tab_a[0];
 	tab_a[0] = tab_b[0];
 	tab_b[0] = tmp;
-}
-
-void	ft_shift()
-{
-	;
 }

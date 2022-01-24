@@ -21,6 +21,7 @@
 # ifndef _STD_OUT
 #  define _STD_OUT	1
 # endif
+
 typedef struct s_list
 {
 	int				content;
@@ -60,6 +61,7 @@ int		ft_tolower(int c);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strrchr(const char *s, int c);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_strcmp(char *s1, char *s2);
 size_t	ft_strlcpy(char *dst, const char *src, size_t n);
 size_t	ft_strlcat(char *dst, const char *src, size_t dstsize);
 char	*ft_strnstr(const char *big, const char	*little, size_t len);

@@ -10,12 +10,16 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include "../libft/libft.h"
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-#ifndef _STD_OUT
-# define _STD_OUT	1
-#endif
+# include <unistd.h>
+# include "../libft/libft.h"
+
+# ifndef _STD_OUT
+#  define _STD_OUT	1
+# endif
+
 typedef struct s_stack
 {
 	struct s_stack	*next;
@@ -31,3 +35,4 @@ typedef struct s_data
 	int				chunk;
 }					t_data;
 
+#endif

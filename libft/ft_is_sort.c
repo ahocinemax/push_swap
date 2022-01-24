@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.c                                        :+:      :+:    :+:   */
+/*   ft_is_sort.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahocine <ahocine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/20 15:31:22 by ahocine           #+#    #+#             */
-/*   Updated: 2022/01/20 15:31:26 by ahocine          ###   ########.fr       */
+/*   Created: 2022/01/24 15:20:39 by ahocine           #+#    #+#             */
+/*   Updated: 2022/01/24 15:20:56 by ahocine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "libft.h"
 
-int	main(int argc, char *argv[])
+int	ft_is_sort(t_list *lst)
 {
-	if (argc <= 1)
-		ft_putstr_fd(*argv, _STD_OUT);
-	return (0);
+	t_list	*last;
+
+	last = ft_lstlast(lst);
+	while (lst != last)
+	{
+		if (lst->content < lst->next->content)
+			lst = lst->next;
+		else
+			return (0);
+	}
+	return (1);
 }
+

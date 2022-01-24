@@ -12,27 +12,6 @@
 
 #include "../includes/push_swap.h"
 
-void	ft_lstprint(t_list *lst)
-{
-	if (!lst)
-		ft_putstr_fd("liste vide", _STD_OUT);
-	else
-	{
-		while (lst)
-		{
-			if (!lst->content)
-				ft_putstr_fd("[NULL] ", _STD_OUT);
-			else
-			{
-				ft_putchar_fd('[', _STD_OUT);
-				ft_putnbr_fd(lst->content, _STD_OUT);
-				ft_putstr_fd('] ', _STD_OUT);
-			}
-		}
-	}
-	ft_putchar_fd('\n', _STD_OUT);
-}
-
 int	ft_is_sort(t_list *lst)
 {
 	t_list	*last;

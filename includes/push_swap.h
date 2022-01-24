@@ -13,16 +13,9 @@
 #include <unistd.h>
 #include "../libft/libft.h"
 
-
-#define _STD_OUT	1
-
-typedef struct	s_list
-{
-	struct s_list	*prev;
-	struct s_list	*next;
-	int				content;
-}					t_list;
-
+#ifndef _STD_OUT
+# define _STD_OUT	1
+#endif
 typedef struct s_stack
 {
 	struct s_stack	*next;

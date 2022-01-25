@@ -17,17 +17,17 @@ static int	ft_int_min(char *str)
 	int	len;
 
 	if (!str)
-		return (0);
+		return (1);
 	str++;
 	len = ft_strlen(str);
 	if (len > 10)
-		return (0);
+		return (1);
 	else if (len == 10)
 	{
 		if (ft_strcmp(str, "2147483647") > 0)
-			return (0);
+			return (1);
 	}
-	return (1);
+	return (0);
 }
 
 static int	ft_int_max(char *str)
@@ -35,16 +35,16 @@ static int	ft_int_max(char *str)
 	int	len;
 
 	if (!str)
-		return (0);
+		return (1);
 	len = ft_strlen(str);
 	if (len > 10)
-		return (0);
+		return (1);
 	else if (len == 10)
 	{
 		if (ft_strcmp(str, "2147483648") > 0)
-			return (0);
+			return (1);
 	}
-	return (1);
+	return (0);
 }
 
 static int	ft_check_str(char **str, int size)
@@ -59,12 +59,12 @@ static int	ft_check_str(char **str, int size)
 		while (str[i][j])
 		{
 			if (!ft_isdigit(str[i][j]) && str[i][j] != '-' && str[i][j] != '+')
-				return (0);
+				return (1);
 			j++;
 		}
 		i++;
 	}
-	return (1);
+	return (0);
 }
 
 static int	ft_check_double(char **str, int size)

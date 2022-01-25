@@ -31,7 +31,7 @@ static void	ft_init_lst(t_list **a, char **str, int size)
 	}
 }
 
-/*static t_data	ft_init_data(t_list **a, t_list **b, t_stack **s)
+static t_data	ft_init_data(t_list **a, t_list **b, t_stack **s)
 {
 	t_data	data;
 
@@ -44,7 +44,7 @@ static void	ft_init_lst(t_list **a, char **str, int size)
 	data.c_max = 0;
 	data.chunk = 0;
 	return (data);
-}*/
+}
 
 static char	**ft_parse_args(int argc, char **argv)
 {
@@ -53,6 +53,8 @@ static char	**ft_parse_args(int argc, char **argv)
 
 	i = 0;
 	str = malloc(sizeof(char *) * argc - 1);
+	if (!str)
+		return (NULL);
 	while (i < argc || argv[i + 1] != NULL)
 	{
 		str[i] = argv[i + 1];
@@ -64,27 +66,25 @@ static char	**ft_parse_args(int argc, char **argv)
 int	main(int argc, char *argv[])
 {
 	t_list	*a;
-	//t_list	*b;
-	//t_stack	*s;
-	//t_data	data;
+	t_list	*b;
+	t_stack	*s;
+	t_data	data;
 	char	**str;
 
 	if (argc < 2)
 		return (-1);
-	//data = ft_init_data(&a, &b, &s);
+	data = ft_init_data(&a, &b, &s);
 	str = ft_parse_args(argc, argv);
-	ft_init_lst(&a, str, argc);
 	if (!str || !ft_check(str, argc))
 	{
-		ft_putstr_fd("Error\n", _STD_OUT);
-		return (-1);
+		return (ft_error(str, &a, &b, &s));
 	}
+	ft_init_lst(&a, str, argc);
 	if (ft_is_sort(a))
 	{
-		//ft_free_all(&a, &b, &s, str);
+		ft_free_all(str, &a, &b, &s);
 		return (0);
 	}
-	ft_lstprint(a);
-	free(a);
+	ft_lstprint(s);
 	return (0);
 }

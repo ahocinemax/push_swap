@@ -12,24 +12,6 @@
 
 #include "../includes/push_swap.h"
 
-int	ft_check_double(char **str, int size)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i < size)
-	{
-		j = i + 1;
-		while (j < size)
-		{
-			if (ft_strcmp(str[i], str[j]) == 0)
-				return (1);
-		}
-	}
-	return (0);
-}
-
 void	ft_swap(int *tab_to_swap)
 {
 	int	tmp;

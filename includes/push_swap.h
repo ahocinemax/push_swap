@@ -37,6 +37,6 @@ typedef struct s_data
 
 #endif
 
-void	ft_error(char **strs, t_list **a, t_list **b, t_stack **stack);
+int		ft_error(char **strs, t_list **a, t_list **b, t_stack **stack);
 void	ft_free_all(char **str, t_list **a, t_list **b, t_stack **s);
-int	ft_check(char **str, int size);
+int		ft_check(char **str, int size);

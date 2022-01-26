@@ -12,6 +12,27 @@
 
 #include "../includes/push_swap.h"
 
+void	ft_push(t_list **to, t_list **from, t_stack **stack, char list)
+{
+	t_list	*tmp;
+	t_list	*top;
+	t_list	*new;
+
+	if (!*from)
+		return ;
+	top = *from;
+	new = ft_lstnew(top->content);
+	ft_lstadd_front(to, new);
+	tmp = *from;
+	top->prev = NULL;
+	*from = top->next;
+	free(tmp);
+	if (list == 'a')
+		ft_stack("pa\n", stack);
+	else
+		ft_stack("pb\n", stack);
+}
+
 void	ft_swap(t_list *lst, t_stack **stack, char list)
 {
 	int	tmp;

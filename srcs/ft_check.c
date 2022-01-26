@@ -12,30 +12,14 @@
 
 #include "../includes/push_swap.h"
 
-static int	ft_int_min(char *str)
+static int	ft_check_int(char *str)
 {
 	int	len;
 
 	if (!str)
 		return (1);
-	str++;
-	len = ft_strlen(str);
-	if (len > 10)
-		return (1);
-	else if (len == 10)
-	{
-		if (ft_strcmp(str, "2147483647") > 0)
-			return (1);
-	}
-	return (0);
-}
-
-static int	ft_int_max(char *str)
-{
-	int	len;
-
-	if (!str)
-		return (1);
+	if (str[0] == '-')
+		str++;
 	len = ft_strlen(str);
 	if (len > 10)
 		return (1);
@@ -94,15 +78,11 @@ int	ft_check(char **str, int size)
 
 	overlap = 0;
 	i = 0;
-	size--;
 	if (ft_check_str(str, size) || ft_check_double(str, size))
 		return (-1);
 	while (i < size && str[i])
 	{
-		if (str[i][0] == '-')
-			overlap = ft_int_min(str[i]);
-		else
-			overlap = ft_int_max(str[i]);
+		overlap = ft_check_int(str[i]);
 		if (overlap == 1)
 			return (-1);
 		i++;

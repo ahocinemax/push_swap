@@ -18,7 +18,6 @@ static void	ft_init_lst(t_list **a, char **str, int size)
 	int		i;
 
 	i = 0;
-	size--;
 	while (i < size)
 	{
 		new = ft_lstnew(ft_atoi(str[i++]));
@@ -52,10 +51,10 @@ static char	**ft_parse_args(int argc, char **argv)
 	char	**str;
 
 	i = 0;
-	str = (char **)malloc(sizeof(char *) * argc);
+	str = (char **)malloc(sizeof(char *) * (argc + 1));
 	if (!str)
 		return (NULL);
-	while (i < argc - 1 || argv[i + 1] != NULL)
+	while (i < argc || argv[i + 1] != NULL)
 	{
 		str[i] = argv[i + 1];
 		i++;
@@ -74,6 +73,7 @@ int	main(int argc, char *argv[])
 	if (argc < 2)
 		return (-1);
 	data = ft_init_data(&a, &b, &s);
+	argc--;
 	str = ft_parse_args(argc, argv);
 	if (!str || ft_check(str, argc))
 		return (ft_error(str, &a, &b, &s));

@@ -1,51 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_sort.c                                          :+:      :+:    :+:   */
+/*   ft_movement2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahocine <ahocine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/26 00:23:42 by ahocine           #+#    #+#             */
-/*   Updated: 2022/01/26 00:23:44 by ahocine          ###   ########.fr       */
+/*   Created: 2022/01/26 06:45:30 by ahocine           #+#    #+#             */
+/*   Updated: 2022/01/26 06:45:31 by ahocine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
 
-static void	ft_tree()
+void	ft_push(t_list **to_there, t_list **from_there, t_stack **stack, char list)
 {
-	;
-}
+	t_list	*tmp;
+	t_list	*top;
+	t_list	*new;
 
-static void	ft_five()
-{
-	;
-}
-
-static void	ft_hundred()
-{
-	;
-}
-
-static void	ft_fivehundred()
-{
-	;
-}
-
-void	ft_sort(t_list **a, t_list **b, t_stack **stack, t_data *data)
-{
-	int	lst_size;
-
-	(void)b;
-	(void)stack;
-	(void)data;
-	lst_size = ft_lstsize(*a);
-	if (lst_size > 1 && lst_size <= 3)
+	if (!*from_there)
 		return ;
-	else if (lst_size > 3 && lst_size <= 5)
-		return ;
-	else if (lst_size > 5 && lst_size <= 100)
-		return ;
+	top = *from_there;
+	new = ft_lstnew(top->content);
+	ft_lstadd_front(to_there, new);
+	tmp = *from_there;
+	top->prev = NULL;
+	*from_there = top->next;
+	free(tmp);
+	if (list = 'a')
+		ft_stack("pa", stack);
 	else
-		return ;
+		ft_stack("pb", stack);
+}
+
+void	ft_reverse(t_list **a, t_stack **stack, char list)
+{
+	
 }

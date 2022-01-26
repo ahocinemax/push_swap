@@ -37,7 +37,14 @@ typedef struct s_data
 
 #endif
 
-void	ft_sort(t_list **a, t_list **b, t_stack **stack, t_data **data);
+void	ft_sort(t_list **a, t_list **b, t_stack **stack, t_data *data);
 int		ft_error(char **str, t_list **a, t_list **b, t_stack **stack);
 void	ft_free_all(char **str, t_list **a, t_list **b, t_stack **s);
 int		ft_check(char **str, int size);
+
+// FONCTION DE MOUVEMENT
+void	ft_push(t_list **to_there, t_list **from_there, t_stack **stack, char list);
+void	ft_rotate_rr(t_list *a, t_list *b, t_stack **stack);
+void	ft_rotate(t_list *lst, t_stack **stack, char list);
+void	ft_swap_ss(t_list *a, t_list *b, t_stack **stack);
+void	ft_swap(t_list *lst, t_stack **stack, char list);

@@ -20,7 +20,7 @@ static void	ft_three(t_list **a, t_stack **stack)
 	if (pattern[0] == 'a')
 	{
 		ft_swap(*a, stack, 'a');
-		ft_reverse(a, stack, 'a');
+		ft_rotate(*a, stack, 'a');
 	}
 	else if (pattern[0] == 'b')
 	{

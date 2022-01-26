@@ -12,13 +12,13 @@
 
 #include "../includes/push_swap.h"
 
-void	ft_free_all(char **str, t_list **a, t_list **b, t_stack **s)
+int	ft_free_all(char **str, t_list **a, t_list **b, t_stack **s)
 {
 	free(str);
 	ft_lstclear(a, NULL);
 	ft_lstclear(b, NULL);
-	s = NULL;
-	(void)s;
+	ft_stack_clear(s);
+	return (0);
 }
 
 int	ft_error(char **str, t_list **a, t_list **b, t_stack **s)
@@ -39,11 +39,13 @@ char	*ft_pattern(t_list *a)
 		else
 			res = "cab";
 	}
-	else if (a->content < a->next->content && a->content < a->next->next->content)
+	else if (a->content < a->next->content && \
+		a->content < a->next->next->content)
 		res = "acb";
 	else
 	{
-		if (a->content < a->next->content && a->content > a->next->next->content)
+		if (a->content < a->next->content && \
+			a->content > a->next->next->content)
 			res = "bca";
 		else
 			res = "bac";
@@ -54,6 +56,7 @@ char	*ft_pattern(t_list *a)
 void	ft_stack_print(t_stack *s)
 {
 	char	*str;
+
 	while (s)
 	{
 		str = s->str;

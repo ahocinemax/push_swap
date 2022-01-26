@@ -76,19 +76,13 @@ int	main(int argc, char *argv[])
 	data = ft_init_data(&a, &b, &s);
 	str = ft_parse_args(argc, argv);
 	if (!str || ft_check(str, argc))
-	{
 		return (ft_error(str, &a, &b, &s));
-	}
 	ft_init_lst(&a, str, argc);
 	if (ft_is_sort(a))
-	{
-		ft_free_all(str, &a, &b, &s);
-		return (0);
-	}
+		return (ft_free_all(str, &a, &b, &s));
 	ft_lstprint(a);
 	ft_sort(&a, &b, &s, &data);
 	ft_stack_print(s);
 	ft_lstprint(a);
-	ft_free_all(str, &a, &b, &s);
-	return (0);
+	return (ft_free_all(str, &a, &b, &s));
 }

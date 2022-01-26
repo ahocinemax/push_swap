@@ -38,7 +38,7 @@ typedef struct s_data
 // UTILS
 void	ft_sort(t_list **a, t_list **b, t_stack **stack, t_data *data);
 int		ft_error(char **str, t_list **a, t_list **b, t_stack **stack);
-void	ft_free_all(char **str, t_list **a, t_list **b, t_stack **s);
+int		ft_free_all(char **str, t_list **a, t_list **b, t_stack **s);
 char	*ft_pattern(t_list *a);
 int		ft_check(char **str, int size);
 

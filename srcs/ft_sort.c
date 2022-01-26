@@ -62,14 +62,22 @@ static void	ft_five(t_list **a, t_list **b, t_stack **stack)
 		ft_push(a, b, stack, 'a');
 }
 
-static void	ft_hundred()
+static void	ft_hundred(t_list **a, t_list **b, t_stack **stack, t_data *data)
 {
-	;
+	(void)a;
+	(void)b;
+	(void)stack;
+	(void)data;
+	return ;
 }
 
-static void	ft_fivehundred()
+static void	ft_fhundred(t_list **a, t_list **b, t_stack **stack, t_data *data)
 {
-	;
+	(void)a;
+	(void)b;
+	(void)stack;
+	(void)data;
+	return ;
 }
 
 void	ft_sort(t_list **a, t_list **b, t_stack **stack, t_data *data)
@@ -94,5 +102,5 @@ void	ft_sort(t_list **a, t_list **b, t_stack **stack, t_data *data)
 		return (ft_five(a, b, stack));
 	else if (lst_size <= 100)
 		return (ft_hundred(a, b, stack, data));
-	return (ft_fivehundred(a, b, stack, data));
+	return (ft_fhundred(a, b, stack, data));
 }

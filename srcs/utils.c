@@ -27,3 +27,26 @@ int	ft_error(char **str, t_list **a, t_list **b, t_stack **s)
 	ft_free_all(str, a, b, s);
 	return (-1);
 }
+
+char	*ft_pattern(t_list *a)
+{
+	char	*res;
+
+	if (a->content > a->next->content && a->content > a->next->next->content)
+	{
+		if (a->next->content > a->next->next->content)
+			res = "cba";
+		else
+			res = "cab";
+	}
+	else if (a->content < a->next->content && a->content < a->next->next->content)
+		res = "acb";
+	else
+	{
+		if (a->content < a->next->content && a->content > a->next->next->content)
+			res = "bca";
+		else
+			res = "bac";
+	}
+	return (res);
+}

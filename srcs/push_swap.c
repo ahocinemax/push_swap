@@ -86,6 +86,7 @@ int	main(int argc, char *argv[])
 		return (0);
 	}
 	ft_sort(&a, &b, &s, &data);
+	ft_lstprint(s);
 	ft_free_all(str, &a, &b, &s);
 	return (0);
 }

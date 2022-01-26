@@ -1,30 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   ft_sort.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahocine <ahocine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/28 22:13:33 by ahocine           #+#    #+#             */
-/*   Updated: 2021/06/28 22:13:35 by ahocine          ###   ########.fr       */
+/*   Created: 2022/01/26 00:23:42 by ahocine           #+#    #+#             */
+/*   Updated: 2022/01/26 00:23:44 by ahocine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "../includes/push_swap.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(int))
+void	ft_sort(t_list **a, t_list **b, t_stack **stack, t_data **data)
 {
-	t_list	*curr;
-	t_list	*next;
+	int	lst_size;
 
-	if (!lst || !*lst)
-		return ;
-	curr = *lst;
-	while (!curr)
-	{
-		next = curr->next;
-		ft_lstdelone(curr, del);
-		curr = next;
-	}
-	*lst = NULL;
+	lst_size = ft_lstsize(*a);
 }

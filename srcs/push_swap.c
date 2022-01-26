@@ -52,10 +52,10 @@ static char	**ft_parse_args(int argc, char **argv)
 	char	**str;
 
 	i = 0;
-	str = malloc(sizeof(char *) * argc - 1);
+	str = (char **)malloc(sizeof(char *) * argc);
 	if (!str)
 		return (NULL);
-	while (i < argc || argv[i + 1] != NULL)
+	while (i < argc - 1 || argv[i + 1] != NULL)
 	{
 		str[i] = argv[i + 1];
 		i++;
@@ -75,7 +75,7 @@ int	main(int argc, char *argv[])
 		return (-1);
 	data = ft_init_data(&a, &b, &s);
 	str = ft_parse_args(argc, argv);
-	if (!str || !ft_check(str, argc))
+	if (!str || ft_check(str, argc))
 	{
 		return (ft_error(str, &a, &b, &s));
 	}
@@ -85,6 +85,7 @@ int	main(int argc, char *argv[])
 		ft_free_all(str, &a, &b, &s);
 		return (0);
 	}
-	ft_lstprint(s);
+	ft_sort(&a, &b, &s, &data);
+	ft_free_all(str, &a, &b, &s);
 	return (0);
 }

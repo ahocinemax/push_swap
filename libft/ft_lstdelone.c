@@ -14,11 +14,11 @@
 
 void	ft_lstdelone(t_list *lst, void (*del)(int))
 {
-	if (!del)
-		return ;
 	if (lst)
 	{
-		(*del)(lst->content);
+		if (del && lst->content)
+			(*del)(lst->content);
 		free(lst);
+		lst = NULL;
 	}
 }

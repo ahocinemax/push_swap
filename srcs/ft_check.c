@@ -96,7 +96,10 @@ int	ft_check(char **str, int size)
 	i = 0;
 	size--;
 	if (ft_check_str(str, size) || ft_check_double(str, size))
+	{
+		ft_putstr_fd("Double ou Str KO\n", _STD_OUT);
 		return (-1);
+	}
 	while (i < size && str[i])
 	{
 		if (str[i][0] == '-')
@@ -104,7 +107,10 @@ int	ft_check(char **str, int size)
 		else
 			overlap = ft_int_max(str[i]);
 		if (overlap == 1)
+		{
+			ft_putstr_fd("Overlaped\n", _STD_OUT);
 			return (-1);
+		}
 		i++;
 	}
 	return (0);

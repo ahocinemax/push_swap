@@ -31,6 +31,7 @@ void	ft_lstprint(t_list *lst)
 				ft_putnbr_fd(value, _STD_OUT);
 				ft_putstr_fd("] ", _STD_OUT);
 			}
+			lst = lst->next;
 		}
 	}
 	ft_putchar_fd('\n', _STD_OUT);

@@ -84,5 +84,7 @@ int	main(int argc, char *argv[])
 	ft_sort(&a, &b, &s, &data);
 	ft_stack_print(s);
 	ft_lstprint(a);
+	if (ft_is_sort(a))
+		ft_putstr_fd("Correct\n", _STD_OUT);
 	return (ft_free_all(str, &a, &b, &s));
 }

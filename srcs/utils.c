@@ -28,6 +28,24 @@ int	ft_error(char **str, t_list **a, t_list **b, t_stack **s)
 	return (-1);
 }
 
+int	ft_smaller(t_list *lst)
+{
+	int		mini;
+	t_list	*tmp;
+
+	if (!lst)
+		return (0);
+	mini = lst->content;
+	tmp = lst->next;
+	while (tmp)
+	{
+		if (mini > tmp->content)
+			mini = tmp->content;
+		tmp = tmp->next;
+	}
+	return (mini);
+}
+
 char	*ft_pattern(t_list *a)
 {
 	char	*res;

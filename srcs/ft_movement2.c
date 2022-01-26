@@ -28,9 +28,9 @@ void	ft_push(t_list **to, t_list **from, t_stack **stack, char list)
 	*from = top->next;
 	free(tmp);
 	if (list == 'a')
-		ft_stack("pa", stack);
+		ft_stack("pa\n", stack);
 	else
-		ft_stack("pb", stack);
+		ft_stack("pb\n", stack);
 }
 
 void	ft_reverse(t_list **lst, t_stack **stack, char list)
@@ -52,9 +52,9 @@ void	ft_reverse(t_list **lst, t_stack **stack, char list)
 	*lst = new;
 	(*lst)->prev = NULL;
 	if (list == 'a')
-		ft_stack("rra", stack);
+		ft_stack("rra\n", stack);
 	else
-		ft_stack("rrb", stack);
+		ft_stack("rrb\n", stack);
 }
 
 void	ft_reverse_rr(t_list **a, t_list **b, t_stack **stack)

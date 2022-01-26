@@ -22,9 +22,9 @@ void	ft_swap(t_list *lst, t_stack **stack, char list)
 	lst->content = tmp2;
 	lst->next->content = tmp;
 	if (list == 'a')
-		ft_stack("sa", stack);
+		ft_stack("sa\n", stack);
 	else
-		ft_stack("sb", stack);
+		ft_stack("sb\n", stack);
 }
 
 void	ft_swap_ss(t_list *a, t_list *b, t_stack **stack)
@@ -51,9 +51,9 @@ void	ft_rotate(t_list *lst, t_stack **stack, char list)
 	lst->content = high;
 	lst->next = NULL;
 	if (list == 'a')
-		ft_stack("ra", stack);
+		ft_stack("ra\n", stack);
 	else
-		ft_stack("rb", stack);
+		ft_stack("rb\n", stack);
 }
 
 void	ft_rotate_rr(t_list *a, t_list *b, t_stack **stack)

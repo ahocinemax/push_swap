@@ -85,8 +85,10 @@ int	main(int argc, char *argv[])
 		ft_free_all(str, &a, &b, &s);
 		return (0);
 	}
+	ft_lstprint(a);
 	ft_sort(&a, &b, &s, &data);
-	ft_lstprint(s);
+	ft_stack_print(s);
+	ft_lstprint(a);
 	ft_free_all(str, &a, &b, &s);
 	return (0);
 }

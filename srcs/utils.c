@@ -50,3 +50,14 @@ char	*ft_pattern(t_list *a)
 	}
 	return (res);
 }
+
+void	ft_stack_print(t_stack *s)
+{
+	char	*str;
+	while (s)
+	{
+		str = s->str;
+		ft_putstr_fd(str, _STD_OUT);
+		s = s->next;
+	}
+}

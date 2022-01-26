@@ -57,5 +57,6 @@ void	ft_swap(t_list *lst, t_stack **stack, char list);
 // FONCTION STACK
 void	ft_stack(char *str, t_stack **stack);
 void	ft_stack_clear(t_stack **stack);
+void	ft_stack_print(t_stack *stack);
 
 #endif

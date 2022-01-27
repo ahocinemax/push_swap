@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils2.c                                        :+:      :+:    :+:   */
+/*   ft_best_path.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahocine <ahocine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/26 23:50:48 by ahocine           #+#    #+#             */
-/*   Updated: 2022/01/26 23:50:53 by ahocine          ###   ########.fr       */
+/*   Updated: 2022/01/27 04:48:54 by ahocine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+static void	ft_free(int **a, int **b)
+{
+	free(*a);
+	*a = NULL;
+	free(*b);
+	*b = NULL;
+}
 
 static void	ft_nb_mouvement(int *nb_mouv, int size, int *index)
 {
@@ -49,8 +57,6 @@ static void	ft_index(t_list *a, int **index)
 	}
 }
 
-
-
 int	ft_rot_or_rev(t_list *a)
 {
 	int	*index;
@@ -76,7 +82,6 @@ int	ft_rot_or_rev(t_list *a)
 		else
 			ret = 0;
 	}
-	free(index);
-	free(nb_mouv);
+	ft_free(&index, &nb_mouv);
 	return (ret);
 }

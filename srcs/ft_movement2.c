@@ -41,21 +41,3 @@ void	ft_reverse_rr(t_list **a, t_list **b, t_stack **stack)
 	ft_reverse(a, stack, 'a');
 	ft_reverse(b, stack, 'b');
 }
-
-int	ft_bigger(t_list *lst)
-{
-	int		maxi;
-	t_list	*tmp;
-
-	if (!lst)
-		return (0);
-	maxi = lst->content;
-	tmp = lst->next;
-	while (tmp)
-	{
-		if (maxi < tmp->content)
-			maxi = tmp->content;
-		tmp = tmp->next;
-	}
-	return (maxi);
-}

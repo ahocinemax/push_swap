@@ -12,22 +12,6 @@
 
 #include "../includes/push_swap.h"
 
-int	ft_free_all(char **str, t_list **a, t_list **b, t_stack **s)
-{
-	free(str);
-	ft_lstclear(a, NULL);
-	ft_lstclear(b, NULL);
-	ft_stack_clear(s);
-	return (0);
-}
-
-int	ft_error(char **str, t_list **a, t_list **b, t_stack **s)
-{
-	ft_putstr_fd("Error\n", _STD_OUT);
-	ft_free_all(str, a, b, s);
-	return (-1);
-}
-
 int	ft_smaller(t_list *lst)
 {
 	int		mini;
@@ -46,29 +30,44 @@ int	ft_smaller(t_list *lst)
 	return (mini);
 }
 
+int	ft_bigger(t_list *lst)
+{
+	int		maxi;
+	t_list	*tmp;
+
+	if (!lst)
+		return (0);
+	maxi = lst->content;
+	tmp = lst->next;
+	while (tmp)
+	{
+		if (maxi < tmp->content)
+			maxi = tmp->content;
+		tmp = tmp->next;
+	}
+	return (maxi);
+}
+
 char	*ft_pattern(t_list *a)
 {
-	char	*res;
-
 	if (a->content > a->next->content && a->content > a->next->next->content)
 	{
 		if (a->next->content > a->next->next->content)
-			res = "cba";
+			return ("cba");
 		else
-			res = "cab";
+			return ("cab");
 	}
 	else if (a->content < a->next->content && \
 		a->content < a->next->next->content)
-		res = "acb";
+		return ("acb");
 	else
 	{
 		if (a->content < a->next->content && \
 			a->content > a->next->next->content)
-			res = "bca";
+			return ("bca");
 		else
-			res = "bac";
+			return ("bac");
 	}
-	return (res);
 }
 
 void	ft_stack_print(t_stack *s)

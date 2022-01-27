@@ -29,19 +29,8 @@ typedef struct s_stack
 	char			*str;
 }					t_stack;
 
-typedef struct s_data
-{
-	int				min;
-	int				max;
-	int				c_min;
-	int				c_max;
-	int				chunk;
-}					t_data;
-
 // UTILS
-void	ft_sort(t_list **a, t_list **b, t_stack **stack, t_data *data);
-int		ft_error(char **str, t_list **a, t_list **b, t_stack **stack);
-int		ft_free_all(char **str, t_list **a, t_list **b, t_stack **s);
+void	ft_sort(t_list **a, t_list **b, t_stack **stack);
 int		ft_check(char **str, int size);
 int		ft_rot_or_rev(t_list *a);
 int		ft_smaller(t_list *lst);

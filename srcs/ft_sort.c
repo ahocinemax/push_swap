@@ -90,16 +90,7 @@ static void	ft_hundred(t_list **a, t_list **b, t_stack **stack)
 	}
 }
 
-static void	ft_fhundred(t_list **a, t_list **b, t_stack **stack, t_data *data)
-{
-	(void)a;
-	(void)b;
-	(void)stack;
-	(void)data;
-	return ;
-}
-
-void	ft_sort(t_list **a, t_list **b, t_stack **stack, t_data *data)
+void	ft_sort(t_list **a, t_list **b, t_stack **stack)
 {
 	int	lst_size;
 
@@ -116,7 +107,6 @@ void	ft_sort(t_list **a, t_list **b, t_stack **stack, t_data *data)
 		return (ft_three(a, stack));
 	else if (lst_size <= 5)
 		return (ft_five(a, b, stack));
-	else if (lst_size <= 100)
+	else
 		return (ft_hundred(a, b, stack));
-	return (ft_fhundred(a, b, stack, data));
 }

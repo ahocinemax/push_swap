@@ -12,29 +12,71 @@
 
 #include "../includes/push_swap.h"
 
-int	ft_rot_or_rev(t_list *a, t_list *b)
+static void	ft_nb_mouvement(int *nb_mouv, int size, int *index)
+{
+	if (index[MAX] > size / 2)
+		nb_mouv[MAX] = size - index[MAX] + 1;
+	else if (index[MAX] < size / 2)
+		nb_mouv[MAX] = index[MAX];
+	if (index[MIN] > size / 2)
+		nb_mouv[MIN] = size - index[MIN] + 1;
+	else if (index[MIN] < size / 2)
+		nb_mouv[MIN] = index[MIN];
+}
+
+static void	ft_index(t_list *a, int **index)
 {
 	t_list	*tmp;
-	int		index_min;
-	int		index_max;
-	int		min;
-	int		max;
+	int		mini;
+	int		maxi;
 
-	index_min = 0;
-	index_max = 0;
-	min = ft_smaller(a);
-	max = ft_bigger(a);
+	(*index) = (int *)ft_calloc(0, sizeof(int) * 2);
+	if (!*index)
+		return ;
 	tmp = a;
-	while (tmp->content != min)
+	mini = ft_smaller(a);
+	maxi = ft_bigger(a);
+	while (tmp && tmp->content != mini)
 	{
 		tmp = tmp->next;
-		index_min++;
+		(*index)[MIN] += 1;
 	}
 	tmp = a;
-	while (tmp->content != max)
+	while (tmp && tmp->content != maxi)
 	{
 		tmp = tmp->next;
-		index_max++;
+		(*index)[MAX] += 1;
 	}
-	return (index_max > index_min);
+}
+
+
+
+int	ft_rot_or_rev(t_list *a)
+{
+	int	*index;
+	int	*nb_mouv;
+	int	ret;
+
+	ft_index(a, &index);
+	nb_mouv = (int *)ft_calloc(0, sizeof(int) * 2);
+	if (!nb_mouv)
+		return (0);
+	ft_nb_mouvement(nb_mouv, ft_lstsize(a), index);
+	if (nb_mouv[MIN] < nb_mouv[MAX])
+	{
+		if (index[MIN] > ft_lstsize(a) / 2)
+			ret = 1;
+		else
+			ret = 0;
+	}
+	else
+	{
+		if (index[MAX] > ft_lstsize(a) / 2)
+			ret = 1;
+		else
+			ret = 0;
+	}
+	free(index);
+	free(nb_mouv);
+	return (ret);
 }

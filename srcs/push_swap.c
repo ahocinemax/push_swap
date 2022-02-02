@@ -90,9 +90,7 @@ int	main(int argc, char *argv[])
 	ft_init_lst(&a, str, argc);
 	if (ft_is_sort(a))
 		return (ft_free_all(str, &a, &b, &s));
-	ft_lstprint(a);
 	ft_sort(&a, &b, &s);
 	ft_stack_print(s);
-	ft_lstprint(a);
 	return (ft_free_all(str, &a, &b, &s));
 }

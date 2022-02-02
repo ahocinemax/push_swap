@@ -73,7 +73,7 @@ static void	ft_hundred(t_list **a, t_list **b, t_stack **stack)
 		rotate = ft_rot_or_rev(*a);
 		while ((*a)->content != val[0] && (*a)->content != val[1])
 		{
-			if (!rotate)
+			if (rotate)
 				ft_rotate(*a, stack, 'a');
 			else
 				ft_reverse(a, stack, 'a');
@@ -88,6 +88,13 @@ static void	ft_hundred(t_list **a, t_list **b, t_stack **stack)
 		if ((*a)->content > (*a)->next->content)
 			ft_rotate(*a, stack, 'a');
 	}
+}
+
+static void	ft_fhundred(t_list **a, t_list **b, t_stack **stack)
+{
+	(void)a;
+	(void)b;
+	(void)stack;
 }
 
 void	ft_sort(t_list **a, t_list **b, t_stack **stack)
@@ -107,6 +114,8 @@ void	ft_sort(t_list **a, t_list **b, t_stack **stack)
 		return (ft_three(a, stack));
 	else if (lst_size <= 5)
 		return (ft_five(a, b, stack));
-	else
+	else if (lst_size <= 100)
 		return (ft_hundred(a, b, stack));
+	else
+		return (ft_fhundred(a, b, stack));
 }

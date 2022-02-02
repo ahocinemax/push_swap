@@ -71,16 +71,16 @@ int	ft_rot_or_rev(t_list *a)
 	if (nb_mouv[MIN] < nb_mouv[MAX])
 	{
 		if (index[MIN] > ft_lstsize(a) / 2)
-			ret = 1;
-		else
 			ret = 0;
+		else
+			ret = 1;
 	}
 	else
 	{
 		if (index[MAX] > ft_lstsize(a) / 2)
-			ret = 1;
-		else
 			ret = 0;
+		else
+			ret = 1;
 	}
 	ft_free(&index, &nb_mouv);
 	return (ret);

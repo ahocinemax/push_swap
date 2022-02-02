@@ -22,15 +22,10 @@ void	ft_lstprint(t_list *lst)
 	{
 		while (lst)
 		{
-			if (!lst->content)
-				ft_putstr_fd("[NULL] ", _STD_OUT);
-			else
-			{
-				value = lst->content;
-				ft_putchar_fd('[', _STD_OUT);
-				ft_putnbr_fd(value, _STD_OUT);
-				ft_putstr_fd("] ", _STD_OUT);
-			}
+			value = lst->content;
+			ft_putchar_fd('[', _STD_OUT);
+			ft_putnbr_fd(value, _STD_OUT);
+			ft_putstr_fd("] ", _STD_OUT);
 			lst = lst->next;
 		}
 	}

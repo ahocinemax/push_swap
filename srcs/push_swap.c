@@ -28,21 +28,24 @@ static int	ft_error(char **str, t_list **a, t_list **b, t_stack **s)
 	return (-1);
 }
 
-static void	ft_init_lst(t_list **a, char **str, int size)
+static void	ft_init_lst(t_list **a, char **str, int	argc)
 {
 	t_list	*new;
 	int		i;
 
 	i = 0;
-	while (i < size)
+	while (str[i])
 	{
-		new = ft_lstnew(ft_atoi(str[i++]));
+		new = ft_lstnew(ft_atoi(str[i]));
+		if (argc == 1)
+			free(str[i]);
 		if (!new)
 		{
 			ft_lstclear(a, NULL);
 			return ;
 		}
 		ft_lstadd_back(a, new);
+		i++;
 	}
 }
 
@@ -52,6 +55,11 @@ static char	**ft_parse_args(int argc, char **argv)
 	char	**str;
 
 	i = 0;
+	if (argc == 1)
+	{
+		str = ft_split(argv[argc], ' ');
+		return (str);
+	}
 	str = (char **)malloc(sizeof(char *) * (argc + 1));
 	if (!str)
 		return (NULL);
@@ -82,7 +90,9 @@ int	main(int argc, char *argv[])
 	ft_init_lst(&a, str, argc);
 	if (ft_is_sort(a))
 		return (ft_free_all(str, &a, &b, &s));
+	ft_lstprint(a);
 	ft_sort(&a, &b, &s);
 	ft_stack_print(s);
+	ft_lstprint(a);
 	return (ft_free_all(str, &a, &b, &s));
 }

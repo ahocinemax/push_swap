@@ -43,22 +43,27 @@ static void	ft_three(t_list **a, t_stack **stack)
 
 static void	ft_five(t_list **a, t_list **b, t_stack **stack)
 {
-	int	min_val;
+	int	val[2];
 
 	while (ft_lstsize(*a) > 3)
 	{
-		min_val = ft_smaller(*a);
-		if ((*a)->content == min_val)
+		val[MIN] = ft_smaller(*a);
+		val[MAX] = ft_bigger(*a);
+		if ((*a)->content == val[MIN] || (*a)->content == val[MAX])
 			ft_push(b, a, stack, 'b');
-		else if ((*a)->next->content != min_val && \
-			(*a)->next->next->content != min_val)
+		else if (((*a)->next->content != val[MIN] && (*a)->next->next->content != val[MIN]) || \
+				((*a)->next->content != val[MAX] && (*a)->next->next->content != val[MAX]))
 			ft_reverse(a, stack, 'a');
 		else
 			ft_rotate(*a, stack, 'a');
 	}
 	ft_three(a, stack);
 	while (ft_lstsize(*b))
+	{
 		ft_push(a, b, stack, 'a');
+		if ((*a)->content > (*a)->next->content)
+			ft_rotate(*a, stack, 'a');
+	}
 }
 
 static void	ft_hundred(t_list **a, t_list **b, t_stack **stack)

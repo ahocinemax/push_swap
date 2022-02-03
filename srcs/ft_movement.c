@@ -44,14 +44,16 @@ void	ft_swap(t_list *lst, t_stack **stack, char list)
 	lst->next->content = tmp;
 	if (list == 'a')
 		ft_stack("sa\n", stack);
-	else
+	else if (list == 'b')
 		ft_stack("sb\n", stack);
+	else if (list == 's')
+		ft_stack("ss\n", stack);
 }
 
 void	ft_swap_ss(t_list *a, t_list *b, t_stack **stack)
 {
-	ft_swap(a, stack, 'a');
-	ft_swap(b, stack, 'b');
+	ft_swap(a, stack, ' ');
+	ft_swap(b, stack, 's');
 }
 
 void	ft_rotate(t_list *lst, t_stack **stack, char list)
@@ -73,12 +75,14 @@ void	ft_rotate(t_list *lst, t_stack **stack, char list)
 	lst->next = NULL;
 	if (list == 'a')
 		ft_stack("ra\n", stack);
-	else
+	else if (list == 'b')
 		ft_stack("rb\n", stack);
+	else if (list == 'r')
+		ft_stack("rr\n", stack);
 }
 
 void	ft_rotate_rr(t_list *a, t_list *b, t_stack **stack)
 {
-	ft_rotate(a, stack, 'a');
-	ft_rotate(b, stack, 'b');
+	ft_rotate(a, stack, ' ');
+	ft_rotate(b, stack, 'r');
 }

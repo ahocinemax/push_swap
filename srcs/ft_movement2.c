@@ -32,12 +32,14 @@ void	ft_reverse(t_list **lst, t_stack **stack, char list)
 	(*lst)->prev = NULL;
 	if (list == 'a')
 		ft_stack("rra\n", stack);
-	else
+	else if (list == 'b')
 		ft_stack("rrb\n", stack);
+	else if (list == 'r')
+		ft_stack("rrr\n", stack);
 }
 
 void	ft_reverse_rr(t_list **a, t_list **b, t_stack **stack)
 {
-	ft_reverse(a, stack, 'a');
-	ft_reverse(b, stack, 'b');
+	ft_reverse(a, stack, ' ');
+	ft_reverse(b, stack, 'r');
 }

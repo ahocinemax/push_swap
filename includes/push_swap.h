@@ -39,13 +39,10 @@ char	*ft_pattern(t_list *a);
 
 // FONCTION DE MOUVEMENT
 void	ft_push(t_list **to, t_list **from, t_stack **stack, char list);
-
 void	ft_reverse_rr(t_list **a, t_list **b, t_stack **stack);
 void	ft_reverse(t_list **lst, t_stack **stack, char list);
-
 void	ft_rotate_rr(t_list *a, t_list *b, t_stack **stack);
 void	ft_rotate(t_list *lst, t_stack **stack, char list);
-
 void	ft_swap_ss(t_list *a, t_list *b, t_stack **stack);
 void	ft_swap(t_list *lst, t_stack **stack, char list);
 

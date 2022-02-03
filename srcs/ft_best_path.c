@@ -66,7 +66,10 @@ int	ft_rot_or_rev(t_list *a)
 	ft_index(a, &index);
 	nb_mouv = (int *)ft_calloc(0, sizeof(int) * 2);
 	if (!nb_mouv)
+	{
+		ft_free(&nb_mouv, &index);
 		return (0);
+	}
 	ft_nb_mouvement(nb_mouv, ft_lstsize(a), index);
 	if (nb_mouv[MIN] < nb_mouv[MAX])
 	{

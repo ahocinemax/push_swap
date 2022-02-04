@@ -51,8 +51,9 @@ static void	ft_five(t_list **a, t_list **b, t_stack **stack)
 		val[MAX] = ft_bigger(*a);
 		if ((*a)->content == val[MIN] || (*a)->content == val[MAX])
 			ft_push(b, a, stack, 'b');
-		else if (((*a)->next->content != val[MIN] && (*a)->next->next->content != val[MIN]) || \
-				((*a)->next->content != val[MAX] && (*a)->next->next->content != val[MAX]))
+		else if (((*a)->next->content != val[MIN] && (*a)->next->next->content \
+				!= val[MIN]) || ((*a)->next->content != val[MAX] && \
+				(*a)->next->next->content != val[MAX]))
 			ft_reverse(a, stack, 'a');
 		else
 			ft_rotate(*a, stack, 'a');
@@ -68,31 +69,30 @@ static void	ft_five(t_list **a, t_list **b, t_stack **stack)
 
 static void	ft_hundred(t_list **a, t_list **b, t_stack **stack)
 {
-	int	rotate;
-	int	val[2];
+	int		index;
+	int		actual;
+	int		LIS;
 
-	while (ft_lstsize(*a) > 3)
-	{
-		val[0] = ft_smaller(*a);
-		val[1] = ft_bigger(*a);
-		rotate = ft_rot_or_rev(*a);
-		while ((*a)->content != val[0] && (*a)->content != val[1])
-		{
-			if (rotate)
-				ft_rotate(*a, stack, 'a');
-			else
-				ft_reverse(a, stack, 'a');
-		}
+	index = ft_lis(*a);
+	LIS = ft_nb_lis(*a, (*a)->next);
+	while ((*a)->content != ft_smaller(*a))
+		ft_rotate(*a, stack, 'a');			// Rotate n'est pas forcement l'option la plus courte
+	actual = (*a)->content;
+	ft_rotate(*a, stack, 'a');				// ICI C'EST BON
+	while (index--)
 		ft_push(b, a, stack, 'b');
-	}
-	while (!ft_is_sort(*a))
-		ft_three(a, stack);
-	while (ft_lstsize(*b))
+	while (ft_lstsize(*a) > LIS && (*a)->content != ft_smaller(*a))
 	{
-		ft_push(a, b, stack, 'a');
-		if ((*a)->content > (*a)->next->content)
-			ft_rotate(*a, stack, 'a');
+		if (actual < (*a)->content)
+		{
+			actual = (*a)->content;
+			ft_rotate(*a, stack, 'a');		// IDEM ICI
+		}
+		else
+			ft_push(b, a, stack, 'b');
 	}
+	// POUR L'INSTANT, ON ARRIVE A AFFICHER LA PLUS LONGUE SUITE CROISSANTE DE 'A'.
+	// RESTE A REPLACER CHAQUE ELEMENT DE 'B' A LA BONNE PLACE DANS 'A'
 }
 
 static void	ft_fhundred(t_list **a, t_list **b, t_stack **stack)

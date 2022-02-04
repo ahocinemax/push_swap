@@ -51,4 +51,8 @@ void	ft_stack(char *str, t_stack **stack);
 void	ft_stack_clear(t_stack **stack);
 void	ft_stack_print(t_stack *stack);
 
+// AUTRES
+int		ft_nb_lis(t_list *a, t_list *start);
+int		ft_lis(t_list *a);
+
 #endif

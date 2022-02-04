@@ -91,6 +91,8 @@ int	main(int argc, char *argv[])
 	if (ft_is_sort(a))
 		return (ft_free_all(str, &a, &b, &s));
 	ft_sort(&a, &b, &s);
+	//ft_lstprint(a);
+	//ft_lstprint(b);
 	ft_stack_print(s);
 	return (ft_free_all(str, &a, &b, &s));
 }

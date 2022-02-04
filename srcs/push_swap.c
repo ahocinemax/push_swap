@@ -28,7 +28,7 @@ static int	ft_error(char **str, t_list **a, t_list **b, t_stack **s)
 	return (-1);
 }
 
-static void	ft_init_lst(t_list **a, char **str, int	argc)
+static void	ft_init_lst(t_list **a, char **str, int argc)
 {
 	t_list	*new;
 	int		i;

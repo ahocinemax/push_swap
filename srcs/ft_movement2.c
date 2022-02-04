@@ -71,7 +71,9 @@ int	ft_lis(t_list *a)
 	t_list	*start;
 	int		*index;
 	int		i;
-	
+	int		curr_min;
+	int		indice;
+
 	index = (int *)ft_calloc(1, sizeof(int) * ft_lstsize(a));
 	if (!index)
 		return (-1);
@@ -83,12 +85,11 @@ int	ft_lis(t_list *a)
 	while (start)
 	{
 		index[i++] = ft_nb_lis(tmp, start);
-		//printf("indice : %d index : %d\n", i - 1, index[i - 1]);
 		start = start->next;
 	}
 	i = 0;
-	int	curr_min = *index;
-	int	indice = 0;
+	curr_min = *index;
+	indice = 0;
 	while (i < ft_lstsize(a))
 	{
 		if (index[i++] > curr_min)

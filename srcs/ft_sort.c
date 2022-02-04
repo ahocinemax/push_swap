@@ -71,17 +71,17 @@ static void	ft_hundred(t_list **a, t_list **b, t_stack **stack)
 {
 	int		index;
 	int		actual;
-	int		LIS;
+	int		lis;
 
 	index = ft_lis(*a);
-	LIS = ft_nb_lis(*a, (*a)->next);
+	lis = ft_nb_lis(*a, (*a)->next);
 	while ((*a)->content != ft_smaller(*a))
 		ft_rotate(*a, stack, 'a');
 	actual = (*a)->content;
 	ft_rotate(*a, stack, 'a');
 	while (index--)
 		ft_push(b, a, stack, 'b');
-	while (ft_lstsize(*a) > LIS && (*a)->content != ft_smaller(*a))
+	while (ft_lstsize(*a) > lis && (*a)->content != ft_smaller(*a))
 	{
 		if (actual < (*a)->content)
 		{
@@ -93,7 +93,8 @@ static void	ft_hundred(t_list **a, t_list **b, t_stack **stack)
 	}
 	while (ft_lstsize(*b) > 1)
 	{
-		if ((*b)->content < (*a)->content && (*b)->content > ft_lstlast(*a)->content)
+		if ((*b)->content < (*a)->content && (*b)->content > \
+			ft_lstlast(*a)->content)
 			ft_push(a, b, stack, 'a');
 		else
 			ft_rotate(*a, stack, 'a');

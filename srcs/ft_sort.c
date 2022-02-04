@@ -76,9 +76,9 @@ static void	ft_hundred(t_list **a, t_list **b, t_stack **stack)
 	index = ft_lis(*a);
 	LIS = ft_nb_lis(*a, (*a)->next);
 	while ((*a)->content != ft_smaller(*a))
-		ft_rotate(*a, stack, 'a');			// Rotate n'est pas forcement l'option la plus courte
+		ft_rotate(*a, stack, 'a');
 	actual = (*a)->content;
-	ft_rotate(*a, stack, 'a');				// ICI C'EST BON
+	ft_rotate(*a, stack, 'a');
 	while (index--)
 		ft_push(b, a, stack, 'b');
 	while (ft_lstsize(*a) > LIS && (*a)->content != ft_smaller(*a))
@@ -86,13 +86,22 @@ static void	ft_hundred(t_list **a, t_list **b, t_stack **stack)
 		if (actual < (*a)->content)
 		{
 			actual = (*a)->content;
-			ft_rotate(*a, stack, 'a');		// IDEM ICI
+			ft_rotate(*a, stack, 'a');
 		}
 		else
 			ft_push(b, a, stack, 'b');
 	}
-	// POUR L'INSTANT, ON ARRIVE A AFFICHER LA PLUS LONGUE SUITE CROISSANTE DE 'A'.
-	// RESTE A REPLACER CHAQUE ELEMENT DE 'B' A LA BONNE PLACE DANS 'A'
+	while (ft_lstsize(*b) > 1)
+	{
+		if ((*b)->content < (*a)->content && (*b)->content > ft_lstlast(*a)->content)
+			ft_push(a, b, stack, 'a');
+		else
+			ft_rotate(*a, stack, 'a');
+	}
+	while ((*a)->content != ft_smaller(*a))
+		ft_rotate(*a, stack, 'a');
+	ft_push(a, b, stack, 'a');
+	ft_rotate(*a, stack, 'a');
 }
 
 static void	ft_fhundred(t_list **a, t_list **b, t_stack **stack)

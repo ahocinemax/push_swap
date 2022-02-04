@@ -83,12 +83,13 @@ int	ft_lis(t_list *a)
 	while (start)
 	{
 		index[i++] = ft_nb_lis(tmp, start);
+		//printf("indice : %d index : %d\n", i - 1, index[i - 1]);
 		start = start->next;
 	}
 	i = 0;
 	int	curr_min = *index;
 	int	indice = 0;
-	while (i < ft_lstsize(a) - 1)
+	while (i < ft_lstsize(a))
 	{
 		if (index[i++] > curr_min)
 		{

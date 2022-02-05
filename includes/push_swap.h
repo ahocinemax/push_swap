@@ -16,10 +16,6 @@
 # include <unistd.h>
 # include "../libft/libft.h"
 
-# ifndef _STD_OUT
-#  define _STD_OUT	1
-# endif
-
 # define MIN		0
 # define MAX		1
 
@@ -31,7 +27,10 @@ typedef struct s_stack
 
 // UTILS
 void	ft_sort(t_list **a, t_list **b, t_stack **stack);
-int		ft_check(char **str, int size);
+int		ft_check(char **str, int size, t_stack **stack);
+void	ft_set_index(t_list *i, t_list **a);
+int		ft_count_move(t_list *a, t_list *b);
+void	ft_lstprint_index(t_list *lst);
 int		ft_rot_or_rev(t_list *a);
 int		ft_smaller(t_list *lst);
 int		ft_bigger(t_list *lst);
@@ -50,9 +49,5 @@ void	ft_swap(t_list *lst, t_stack **stack, char list);
 void	ft_stack(char *str, t_stack **stack);
 void	ft_stack_clear(t_stack **stack);
 void	ft_stack_print(t_stack *stack);
-
-// AUTRES
-int		ft_nb_lis(t_list *a, t_list *start);
-int		ft_lis(t_list *a);
 
 #endif

@@ -49,25 +49,30 @@ static void	ft_init_lst(t_list **a, char **str, int argc)
 	}
 }
 
-static char	**ft_parse_args(int argc, char **argv)
+static char	**ft_parse_args(int argc, char **argv, t_list **a, t_list **b)
 {
+
 	int		i;
 	char	**str;
 
+	*a = NULL;
+	*b = NULL;
 	i = 0;
+	argv++;
 	if (argc == 1)
 	{
-		str = ft_split(argv[argc], ' ');
+		str = ft_split(*argv, ' ');
 		return (str);
 	}
 	str = (char **)malloc(sizeof(char *) * (argc + 1));
 	if (!str)
 		return (NULL);
-	while (i < argc || argv[i + 1] != NULL)
+	while (i < argc || argv[i])
 	{
-		str[i] = argv[i + 1];
+		str[i] = argv[i];
 		i++;
 	}
+	str[i] = NULL;
 	return (str);
 }
 
@@ -75,21 +80,24 @@ int	main(int argc, char *argv[])
 {
 	t_list	*a;
 	t_list	*b;
+	t_list	*i;
 	t_stack	*s;
 	char	**str;
 
 	if (argc < 2)
 		return (-1);
-	a = NULL;
-	b = NULL;
-	s = NULL;
 	argc--;
-	str = ft_parse_args(argc, argv);
-	if (!str || ft_check(str, argc))
+	str = ft_parse_args(argc, argv, &a, &b);
+	if (!str || ft_check(str, argc, &s))
 		return (ft_error(str, &a, &b, &s));
 	ft_init_lst(&a, str, argc);
+	ft_init_lst(&i, str, argc);
 	if (ft_is_sort(a))
 		return (ft_free_all(str, &a, &b, &s));
+	ft_set_index(i, &a);
+	free(i);
+	ft_putstr_fd("A = ", 1);
+	ft_lstprint(a);
 	ft_sort(&a, &b, &s);
 	ft_stack_print(s);
 	return (ft_free_all(str, &a, &b, &s));

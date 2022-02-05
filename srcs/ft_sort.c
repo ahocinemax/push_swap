@@ -69,40 +69,24 @@ static void	ft_five(t_list **a, t_list **b, t_stack **stack)
 
 static void	ft_hundred(t_list **a, t_list **b, t_stack **stack)
 {
-	int		index;
-	int		actual;
-	int		lis;
+	(void)a;
+	(void)b;
+	(void)stack;
+	int	i;
 
-	index = ft_lis(*a);
-	lis = ft_nb_lis(*a, (*a)->next);
-	while ((*a)->content != ft_smaller(*a))
-		ft_rotate(*a, stack, 'a');
-	actual = (*a)->content;
-	ft_rotate(*a, stack, 'a');
-	while (index--)
-		ft_push(b, a, stack, 'b');
-	while (ft_lstsize(*a) > lis && (*a)->content != ft_smaller(*a))
+	i = 0;
+	while (i < ft_lstsize(*a) - 1)
 	{
-		if (actual < (*a)->content)
-		{
-			actual = (*a)->content;
-			ft_rotate(*a, stack, 'a');
-		}
-		else
+		if ((*a)->index != i && (*a)->index != (*a)->next->index - 1)
 			ft_push(b, a, stack, 'b');
-	}
-	while (ft_lstsize(*b) > 1)
-	{
-		if ((*b)->content < (*a)->content && (*b)->content > \
-			ft_lstlast(*a)->content)
-			ft_push(a, b, stack, 'a');
 		else
 			ft_rotate(*a, stack, 'a');
+		i++;
 	}
-	while ((*a)->content != ft_smaller(*a))
-		ft_rotate(*a, stack, 'a');
-	ft_push(a, b, stack, 'a');
-	ft_rotate(*a, stack, 'a');
+	ft_putstr_fd("LISTE A : ", 1);
+	ft_lstprint(*a);
+	ft_putstr_fd("LISTE B : ", 1);
+	ft_lstprint(*b);
 }
 
 static void	ft_fhundred(t_list **a, t_list **b, t_stack **stack)

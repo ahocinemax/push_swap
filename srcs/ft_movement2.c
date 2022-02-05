@@ -23,6 +23,7 @@ void	ft_reverse(t_list **lst, t_stack **stack, char list)
 	tmp = *lst;
 	last = ft_lstlast(tmp);
 	new = ft_lstnew(last->content);
+	new->index = last->index;
 	ft_lstadd_front(&tmp, new);
 	while (tmp->next->next)
 		tmp = tmp->next;
@@ -44,59 +45,7 @@ void	ft_reverse_rr(t_list **a, t_list **b, t_stack **stack)
 	ft_reverse(b, stack, 'r');
 }
 
-int	ft_nb_lis(t_list *a, t_list *start)
+int		ft_count_move(t_list *a, t_list *b)
 {
-	t_list	*tmp;
-	int		index;
-	int		min;
-
-	index = 1;
-	min = a->content;
-	tmp = start;
-	while (tmp)
-	{
-		if (min < tmp->content)
-		{
-			min = tmp->content;
-			index++;
-		}
-		tmp = tmp->next;
-	}
-	return (index);
-}
-
-int	ft_lis(t_list *a)
-{
-	t_list	*tmp;
-	t_list	*start;
-	int		*index;
-	int		i;
-	int		curr_min;
-	int		indice;
-
-	index = (int *)ft_calloc(1, sizeof(int) * ft_lstsize(a));
-	if (!index)
-		return (-1);
-	i = 0;
-	tmp = a;
-	while (tmp->content != ft_smaller(a))
-		ft_rotate(tmp, NULL, '\0');
-	start = tmp->next;
-	while (start)
-	{
-		index[i++] = ft_nb_lis(tmp, start);
-		start = start->next;
-	}
-	i = 0;
-	curr_min = *index;
-	indice = 0;
-	while (i < ft_lstsize(a))
-	{
-		if (index[i++] > curr_min)
-		{
-			curr_min = index[i - 1];
-			indice = i - 1;
-		}
-	}
-	return (indice);
+	;
 }

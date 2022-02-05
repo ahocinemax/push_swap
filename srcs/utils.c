@@ -82,31 +82,65 @@ void	ft_stack_print(t_stack *s)
 	}
 }
 
-/*static void	ft_hundred(t_list **a, t_list **b, t_stack **stack)
+static int	*ft_index(t_list **a)
 {
-	int	rotate;
-	int	val[2];
+	t_list	*tmp;
+	int		*res;
+	int		i;
+	int		size;
 
-	while (ft_lstsize(*a) > 3)
+	i = 0;
+	size = ft_lstsize(*a);
+	res = (int *)malloc(size * sizeof(int));
+	tmp = *a;
+	while (tmp)
 	{
-		val[0] = ft_smaller(*a);
-		val[1] = ft_bigger(*a);
-		rotate = ft_rot_or_rev(*a);
-		while ((*a)->content != val[0] && (*a)->content != val[1])
+		res[i] = 0;
+		while (tmp->content != ft_smaller(tmp))
+			ft_rotate(tmp, NULL, 'c');
+		res[i] = tmp->content;
+		tmp = tmp->next;
+		i++;
+	}
+	return (res);
+}
+
+void	ft_set_index(t_list *temp, t_list **a)
+{
+	int		*index;
+	int		i;
+
+	index = ft_index(&temp);
+	i = 0;
+	i = 0;
+	while (i < ft_lstsize(*a))
+	{
+		while (index[i] != (*a)->content)
+			ft_reverse(a, NULL, 'x');
+		(*a)->index = i;
+		i++;
+	}
+	free(index);
+	ft_reverse(a, NULL, 'x');
+}
+
+void	ft_lstprint_index(t_list *lst)
+{
+	int	value;
+
+	if (!lst)
+		ft_putstr_fd("liste vide", _STD_OUT);
+	else
+	{
+		while (lst)
 		{
-			if (rotate)
-				ft_rotate(*a, stack, 'a');
-			else
-				ft_reverse(a, stack, 'a');
+			value = lst->index;
+			ft_putchar_fd('[', _STD_OUT);
+			ft_putnbr_fd(value, _STD_OUT);
+			ft_putstr_fd("] ", _STD_OUT);
+			lst = lst->next;
 		}
-		ft_push(b, a, stack, 'b');
 	}
-	while (!ft_is_sort(*a))
-		ft_three(a, stack);
-	while (ft_lstsize(*b))
-	{
-		ft_push(a, b, stack, 'a');
-		if ((*a)->content > (*a)->next->content)
-			ft_rotate(*a, stack, 'a');
-	}
-}*/
+	ft_putchar_fd('\n', _STD_OUT);
+}
+

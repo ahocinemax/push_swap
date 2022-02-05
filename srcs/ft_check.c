@@ -71,11 +71,12 @@ static int	ft_check_double(char **str, int size)
 	return (0);
 }
 
-int	ft_check(char **str, int size)
+int	ft_check(char **str, int size, t_stack **stack)
 {
 	int	overlap;
 	int	i;
 
+	*stack = NULL;
 	overlap = 0;
 	i = 0;
 	if (ft_check_str(str, size) || ft_check_double(str, size))

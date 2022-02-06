@@ -25,8 +25,6 @@ void	ft_lstprint(t_list *lst)
 			value = lst->content;
 			ft_putchar_fd('[', _STD_OUT);
 			ft_putnbr_fd(value, _STD_OUT);
-			//ft_putstr_fd("] -> [", _STD_OUT);
-			//ft_putnbr_fd(lst->index, _STD_OUT);
 			ft_putstr_fd("] ", _STD_OUT);
 			lst = lst->next;
 		}

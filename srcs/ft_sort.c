@@ -67,26 +67,109 @@ static void	ft_five(t_list **a, t_list **b, t_stack **stack)
 	}
 }
 
+static void	ft_lstprint_keep(t_list *lst)
+{
+	int	value;
+
+	if (!lst)
+		;//ft_putstr_fd("liste vide", _STD_OUT);
+	else
+	{
+		while (lst)
+		{
+			value = lst->keep;
+			ft_putchar_fd('[', _STD_OUT);
+			ft_putnbr_fd(value, _STD_OUT);
+			ft_putstr_fd("] ", _STD_OUT);
+			lst = lst->next;
+		}
+	}
+	//ft_putchar_fd('\n', _STD_OUT);
+}
+
 static void	ft_hundred(t_list **a, t_list **b, t_stack **stack)
 {
-	(void)a;
-	(void)b;
 	(void)stack;
-	int	i;
+	(void)b;
+	t_list	*current;
+	int		best;
+	int		i;
+	int		actual_count;
+	int		max_count;
 
-	i = 0;
-	while (i < ft_lstsize(*a) - 1)
+	while (!ft_is_sort(*a))
 	{
-		if ((*a)->index != i && (*a)->index != (*a)->next->index - 1)
-			ft_push(b, a, stack, 'b');
-		else
+		current = *a;
+		i = 0;
+		max_count = 0;
+		while (i < ft_lstsize(*a))
+		{
+			actual_count = ft_count_suite(current);
+			if (actual_count > max_count)
+			{
+				best = current->index;
+				max_count = actual_count;
+			}
+			else if (actual_count == max_count && 
+			(current->index < best))
+				best = current->index;
+			i++;
+			current = current->next;
+		}
+		int	size = ft_lstsize(*a);
+		while ((*a)->index != best)
 			ft_rotate(*a, stack, 'a');
-		i++;
+		ft_count_suite((*a));
+		i = 0;
+		while (i < size)
+		{
+			if ((*a)->keep == TRUE)
+				ft_rotate(*a, stack, 'a');
+			else
+				ft_push(b, a, stack, 'b');
+			i++;
+		}
+		current = *b;
+		i = 0;
+		max_count = 0;
+		best = 0;
+		while (i < ft_lstsize(*b))
+		{
+			actual_count = ft_count_suite(current);
+			if (actual_count > max_count)
+			{
+				best = current->index;
+				max_count = actual_count;
+			}
+			else if (actual_count == max_count && 
+			(current->index < best))
+				best = current->index;
+			i++;
+			current = current->next;
+		}
+		size = ft_lstsize(*b);
+		while ((*b)->index != best)
+			ft_rotate(*b, stack, 'b');
+		ft_count_suite((*b));
+		i = 0;
+		while (i < size)
+		{
+			if ((*b)->keep == TRUE)
+				ft_rotate(*b, stack, 'b');
+			else
+				ft_push(a, b, stack, 'a');
+			i++;
+		}
+		ft_lstprint_keep(NULL);
+		/*ft_putstr_fd("\nLISTE A : \n", 1);
+		ft_lstprint(*a);
+		ft_lstprint_index(*a);
+		ft_lstprint_keep(*a);
+		ft_putstr_fd("\nLISTE B : \n", 1);
+		ft_lstprint(*b);
+		ft_lstprint_index(*b);
+		ft_lstprint_keep((*b));*/
 	}
-	ft_putstr_fd("LISTE A : ", 1);
-	ft_lstprint(*a);
-	ft_putstr_fd("LISTE B : ", 1);
-	ft_lstprint(*b);
 }
 
 static void	ft_fhundred(t_list **a, t_list **b, t_stack **stack)

@@ -107,11 +107,12 @@ static int	*ft_index(t_list **a)
 
 void	ft_set_index(t_list *temp, t_list **a)
 {
-	int		*index;
-	int		i;
+	int	head;
+	int	*index;
+	int	i;
 
+	head = (*a)->content;
 	index = ft_index(&temp);
-	i = 0;
 	i = 0;
 	while (i < ft_lstsize(*a))
 	{
@@ -121,7 +122,8 @@ void	ft_set_index(t_list *temp, t_list **a)
 		i++;
 	}
 	free(index);
-	ft_reverse(a, NULL, 'x');
+	while ((*a)->content != head)
+		ft_reverse(a, NULL, 'x');
 }
 
 void	ft_lstprint_index(t_list *lst)
@@ -143,4 +145,3 @@ void	ft_lstprint_index(t_list *lst)
 	}
 	ft_putchar_fd('\n', _STD_OUT);
 }
-

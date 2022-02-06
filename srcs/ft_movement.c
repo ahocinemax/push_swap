@@ -23,6 +23,7 @@ void	ft_push(t_list **to, t_list **from, t_stack **stack, char list)
 	top = *from;
 	new = ft_lstnew(top->content);
 	new->index = top->index;
+	new->keep = top->keep;
 	ft_lstadd_front(to, new);
 	tmp = *from;
 	top->prev = NULL;
@@ -47,6 +48,10 @@ void	ft_swap(t_list *lst, t_stack **stack, char list)
 	tmp2 = lst->next->index;
 	lst->index = tmp2;
 	lst->next->index = tmp;
+	tmp = lst->keep;
+	tmp2 = lst->next->keep;
+	lst->keep = tmp2;
+	lst->next->keep = tmp;
 	if (list == 'a')
 		ft_stack("sa\n", stack);
 	else if (list == 'b')
@@ -66,20 +71,24 @@ void	ft_rotate(t_list *lst, t_stack **stack, char list)
 	t_list	*tmp;
 	int		high;
 	int		index;
+	int		keep;
 
 	if (!lst || !lst->next)
 		return ;
 	high = lst->content;
 	index = lst->index;
+	keep = lst->keep;
 	while (lst->next)
 	{
 		tmp = lst->next;
 		lst->content = tmp->content;
 		lst->index = tmp->index;
+		lst->keep = tmp->keep;
 		lst = lst->next;
 	}
 	lst->content = high;
 	lst->index = index;
+	lst->keep = keep;
 	lst->next = NULL;
 	if (list == 'a')
 		ft_stack("ra\n", stack);

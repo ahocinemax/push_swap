@@ -28,6 +28,7 @@ typedef struct s_list
 	struct s_list	*next;
 	int				index;
 	struct s_list	*prev;
+	int				keep;
 }					t_list;
 
 /*	Linked lists	*/

@@ -51,7 +51,6 @@ static void	ft_init_lst(t_list **a, char **str, int argc)
 
 static char	**ft_parse_args(int argc, char **argv, t_list **a, t_list **b)
 {
-
 	int		i;
 	char	**str;
 
@@ -96,9 +95,8 @@ int	main(int argc, char *argv[])
 		return (ft_free_all(str, &a, &b, &s));
 	ft_set_index(i, &a);
 	free(i);
-	ft_putstr_fd("A = ", 1);
-	ft_lstprint(a);
 	ft_sort(&a, &b, &s);
 	ft_stack_print(s);
+	//ft_lstprint(a);
 	return (ft_free_all(str, &a, &b, &s));
 }

@@ -19,6 +19,9 @@
 # define MIN		0
 # define MAX		1
 
+# define FALSE		0
+# define TRUE		1
+
 typedef struct s_stack
 {
 	struct s_stack	*next;
@@ -29,8 +32,8 @@ typedef struct s_stack
 void	ft_sort(t_list **a, t_list **b, t_stack **stack);
 int		ft_check(char **str, int size, t_stack **stack);
 void	ft_set_index(t_list *i, t_list **a);
-int		ft_count_move(t_list *a, t_list *b);
 void	ft_lstprint_index(t_list *lst);
+int		ft_count_suite(t_list *a);
 int		ft_rot_or_rev(t_list *a);
 int		ft_smaller(t_list *lst);
 int		ft_bigger(t_list *lst);

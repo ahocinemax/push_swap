@@ -24,6 +24,7 @@ void	ft_reverse(t_list **lst, t_stack **stack, char list)
 	last = ft_lstlast(tmp);
 	new = ft_lstnew(last->content);
 	new->index = last->index;
+	new->keep = last->keep;
 	ft_lstadd_front(&tmp, new);
 	while (tmp->next->next)
 		tmp = tmp->next;
@@ -45,7 +46,31 @@ void	ft_reverse_rr(t_list **a, t_list **b, t_stack **stack)
 	ft_reverse(b, stack, 'r');
 }
 
-int		ft_count_move(t_list *a, t_list *b)
+int	ft_count_suite(t_list *a)
 {
-	;
+	t_list	*current;
+	int		nb_elem;
+	int		index;
+	int		head;
+
+	if (!a)
+		return (0);
+	head = a->content;
+	a->keep = TRUE;
+	index = a->index;
+	current = a->next;
+	nb_elem = 1;
+	while (current && current->content != head)
+	{
+		if (current->index == index + 1)
+		{
+			current->keep = TRUE;
+			nb_elem++;
+			index++;
+		}
+		else
+			current->keep = FALSE;
+		current = current->next;
+	}
+	return (nb_elem);
 }

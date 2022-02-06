@@ -67,35 +67,14 @@ static void	ft_five(t_list **a, t_list **b, t_stack **stack)
 	}
 }
 
-static void	ft_lstprint_keep(t_list *lst)
-{
-	int	value;
-
-	if (!lst)
-		;//ft_putstr_fd("liste vide", _STD_OUT);
-	else
-	{
-		while (lst)
-		{
-			value = lst->keep;
-			ft_putchar_fd('[', _STD_OUT);
-			ft_putnbr_fd(value, _STD_OUT);
-			ft_putstr_fd("] ", _STD_OUT);
-			lst = lst->next;
-		}
-	}
-	//ft_putchar_fd('\n', _STD_OUT);
-}
-
 static void	ft_hundred(t_list **a, t_list **b, t_stack **stack)
 {
-	(void)stack;
-	(void)b;
 	t_list	*current;
 	int		best;
 	int		i;
 	int		actual_count;
 	int		max_count;
+	int		size;
 
 	while (!ft_is_sort(*a))
 	{
@@ -110,13 +89,13 @@ static void	ft_hundred(t_list **a, t_list **b, t_stack **stack)
 				best = current->index;
 				max_count = actual_count;
 			}
-			else if (actual_count == max_count && 
-			(current->index < best))
+			else if (actual_count == max_count && \
+				(current->index < best))
 				best = current->index;
 			i++;
 			current = current->next;
 		}
-		int	size = ft_lstsize(*a);
+		size = ft_lstsize(*a);
 		while ((*a)->index != best)
 			ft_rotate(*a, stack, 'a');
 		ft_count_suite((*a));
@@ -141,8 +120,8 @@ static void	ft_hundred(t_list **a, t_list **b, t_stack **stack)
 				best = current->index;
 				max_count = actual_count;
 			}
-			else if (actual_count == max_count && 
-			(current->index < best))
+			else if (actual_count == max_count && \
+				(current->index < best))
 				best = current->index;
 			i++;
 			current = current->next;
@@ -160,15 +139,12 @@ static void	ft_hundred(t_list **a, t_list **b, t_stack **stack)
 				ft_push(a, b, stack, 'a');
 			i++;
 		}
-		ft_lstprint_keep(NULL);
 		/*ft_putstr_fd("\nLISTE A : \n", 1);
 		ft_lstprint(*a);
 		ft_lstprint_index(*a);
-		ft_lstprint_keep(*a);
 		ft_putstr_fd("\nLISTE B : \n", 1);
 		ft_lstprint(*b);
-		ft_lstprint_index(*b);
-		ft_lstprint_keep((*b));*/
+		ft_lstprint_index(*b);*/
 	}
 }
 

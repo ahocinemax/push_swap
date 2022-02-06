@@ -97,6 +97,5 @@ int	main(int argc, char *argv[])
 	free(i);
 	ft_sort(&a, &b, &s);
 	ft_stack_print(s);
-	//ft_lstprint(a);
 	return (ft_free_all(str, &a, &b, &s));
 }

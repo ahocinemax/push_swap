@@ -76,8 +76,6 @@ static char	**ft_parse_args(int argc, char **argv, t_list **a, t_list **b)
 
 int	main(int argc, char *argv[])
 {
-
-
 	t_list	*a;
 	t_list	*b;
 	t_list	*i;

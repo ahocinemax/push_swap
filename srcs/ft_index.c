@@ -96,5 +96,4 @@ void	ft_move(t_list **curr, t_list **scnd, t_stack **s, t_data *data)
 		i++;
 	}
 	ft_push_wrong(curr, scnd, s, data);
-	//printf("FININSH\n");
 }

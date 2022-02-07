@@ -12,19 +12,19 @@
 
 #include "../includes/push_swap.h"
 
-static int	ft_free_all(char **str, t_list **a, t_list **b, t_stack **s)
+static int	ft_a(char **str, t_list **a, t_list **b, t_stack **s)
 {
-	free(str);
 	ft_lstclear(a, NULL);
 	ft_lstclear(b, NULL);
 	ft_stack_clear(s);
+	free(str);
 	return (0);
 }
 
-static int	ft_error(char **str, t_list **a, t_list **b, t_stack **s)
+static int	ft_error(char **str, t_list **a, t_stack **s)
 {
 	ft_putstr_fd("Error\n", _STD_OUT);
-	ft_free_all(str, a, b, s);
+	ft_a(str, a, NULL, s);
 	return (-1);
 }
 
@@ -33,12 +33,11 @@ static void	ft_init_lst(t_list **a, char **str, int argc)
 	t_list	*new;
 	int		i;
 
+	(void)argc;
 	i = 0;
 	while (str[i])
 	{
 		new = ft_lstnew(ft_atoi(str[i]));
-		if (argc == 1)
-			free(str[i]);
 		if (!new)
 		{
 			ft_lstclear(a, NULL);
@@ -81,6 +80,7 @@ int	main(int argc, char *argv[])
 	t_list	*b;
 	t_list	*i;
 	t_stack	*s;
+	t_data	*data;
 	char	**str;
 
 	if (argc < 2)
@@ -88,14 +88,26 @@ int	main(int argc, char *argv[])
 	argc--;
 	str = ft_parse_args(argc, argv, &a, &b);
 	if (!str || ft_check(str, argc, &s))
-		return (ft_error(str, &a, &b, &s));
+		return (ft_error(str, &a, &s));
+	i = NULL;
 	ft_init_lst(&a, str, argc);
 	ft_init_lst(&i, str, argc);
 	if (ft_is_sort(a))
-		return (ft_free_all(str, &a, &b, &s));
-	ft_set_index(i, &a);
+	{
+		free(i);
+		free(data);
+		return (ft_a(str, &a, &b, &s));
+	}
+	ft_putstr_fd("\nBEFORE : \n", 1);
+	ft_lstprint(a);
+	ft_lstprint_index(a);
+	ft_set_index(i, &a, &data);
 	free(i);
-	ft_sort(&a, &b, &s);
+	ft_putstr_fd("\nAFTER : \n", 1);
+	ft_lstprint(a);
+	ft_lstprint_index(a);
+	ft_sort(&a, &b, &s, data);
 	ft_stack_print(s);
-	return (ft_free_all(str, &a, &b, &s));
+	free(data);
+	return (ft_a(str, &a, &b, &s));
 }

@@ -19,24 +19,24 @@ static void	ft_three(t_list **a, t_stack **stack)
 	pattern = ft_pattern(*a);
 	if (pattern[0] == 'a')
 	{
-		ft_swap(*a, stack, 'a');
-		ft_rotate(*a, stack, 'a');
+		ft_swap(*a, stack, "sa\n");
+		ft_rotate(*a, stack, "ra\n");
 	}
 	else if (pattern[0] == 'b')
 	{
 		if (pattern[1] == 'a')
-			ft_swap(*a, stack, 'a');
+			ft_swap(*a, stack, "sa\n");
 		else
-			ft_reverse(a, stack, 'a');
+			ft_reverse(a, stack, "rra\n");
 	}
 	else
 	{
 		if (pattern[1] == 'a')
-			ft_rotate(*a, stack, 'a');
+			ft_rotate(*a, stack, "ra\n");
 		else
 		{
-			ft_swap(*a, stack, 'a');
-			ft_reverse(a, stack, 'a');
+			ft_swap(*a, stack, "sa\n");
+			ft_reverse(a, stack, "rra\n");
 		}
 	}
 }
@@ -50,112 +50,44 @@ static void	ft_five(t_list **a, t_list **b, t_stack **stack)
 		val[MIN] = ft_smaller(*a);
 		val[MAX] = ft_bigger(*a);
 		if ((*a)->content == val[MIN] || (*a)->content == val[MAX])
-			ft_push(b, a, stack, 'b');
+			ft_push(b, a, stack, "pb\n");
 		else if (((*a)->next->content != val[MIN] && (*a)->next->next->content \
 				!= val[MIN]) || ((*a)->next->content != val[MAX] && \
 				(*a)->next->next->content != val[MAX]))
-			ft_reverse(a, stack, 'a');
+			ft_reverse(a, stack, "rra\n");
 		else
-			ft_rotate(*a, stack, 'a');
+			ft_rotate(*a, stack, "ra\n");
 	}
 	ft_three(a, stack);
 	while (ft_lstsize(*b))
 	{
-		ft_push(a, b, stack, 'a');
+		ft_push(a, b, stack, "pa\n");
 		if ((*a)->content > (*a)->next->content)
-			ft_rotate(*a, stack, 'a');
+			ft_rotate(*a, stack, "ra\n");
 	}
 }
 
-static void	ft_hundred(t_list **a, t_list **b, t_stack **stack)
+static void	ft_hundred(t_list **a, t_list **b, t_stack **stack, t_data *data)
 {
-	t_list	*current;
-	int		best;
-	int		i;
-	int		actual_count;
-	int		max_count;
-	int		size;
-
-	while (!ft_is_sort(*a))
-	{
-		current = *a;
-		i = 0;
-		max_count = 0;
-		while (i < ft_lstsize(*a))
-		{
-			actual_count = ft_count_suite(current);
-			if (actual_count > max_count)
-			{
-				best = current->index;
-				max_count = actual_count;
-			}
-			else if (actual_count == max_count && \
-				(current->index < best))
-				best = current->index;
-			i++;
-			current = current->next;
-		}
-		size = ft_lstsize(*a);
-		while ((*a)->index != best)
-			ft_rotate(*a, stack, 'a');
-		ft_count_suite((*a));
-		i = 0;
-		while (i < size)
-		{
-			if ((*a)->keep == TRUE)
-				ft_rotate(*a, stack, 'a');
-			else
-				ft_push(b, a, stack, 'b');
-			i++;
-		}
-		current = *b;
-		i = 0;
-		max_count = 0;
-		best = 0;
-		while (i < ft_lstsize(*b))
-		{
-			actual_count = ft_count_suite(current);
-			if (actual_count > max_count)
-			{
-				best = current->index;
-				max_count = actual_count;
-			}
-			else if (actual_count == max_count && \
-				(current->index < best))
-				best = current->index;
-			i++;
-			current = current->next;
-		}
-		size = ft_lstsize(*b);
-		while ((*b)->index != best)
-			ft_rotate(*b, stack, 'b');
-		ft_count_suite((*b));
-		i = 0;
-		while (i < size)
-		{
-			if ((*b)->keep == TRUE)
-				ft_rotate(*b, stack, 'b');
-			else
-				ft_push(a, b, stack, 'a');
-			i++;
-		}
-		/*ft_putstr_fd("\nLISTE A : \n", 1);
-		ft_lstprint(*a);
-		ft_lstprint_index(*a);
-		ft_putstr_fd("\nLISTE B : \n", 1);
-		ft_lstprint(*b);
-		ft_lstprint_index(*b);*/
-	}
+	ft_move(a, b, stack, data);
+	/*ft_putstr_fd("\nLISTE A : \n", 1);
+	ft_lstprint(*a);
+	ft_lstprint_index(*a);
+	ft_putstr_fd("\nLISTE B : \n", 1);
+	ft_lstprint(*b);
+	ft_lstprint_index(*b);*/
+	ft_move(b, a, stack, data);
 }
 
-static void	ft_fhundred(t_list **a, t_list **b, t_stack **stack)
+static void	ft_fhundred(t_list **a, t_list **b, t_stack **stack, t_data *data)
 {
 	(void)a;
 	(void)b;
 	(void)stack;
+	(void)data;
 }
 
-void	ft_sort(t_list **a, t_list **b, t_stack **stack)
+void	ft_sort(t_list **a, t_list **b, t_stack **stack, t_data *data)
 {
 	int	lst_size;
 
@@ -165,7 +97,7 @@ void	ft_sort(t_list **a, t_list **b, t_stack **stack)
 	else if (lst_size == 2)
 	{
 		if ((*a)->content > (*a)->next->content)
-			ft_swap(*a, stack, 'a');
+			ft_swap(*a, stack, "sa\n");
 		return ;
 	}
 	else if (lst_size == 3)
@@ -173,7 +105,7 @@ void	ft_sort(t_list **a, t_list **b, t_stack **stack)
 	else if (lst_size <= 5)
 		return (ft_five(a, b, stack));
 	else if (lst_size <= 100)
-		return (ft_hundred(a, b, stack));
+		return (ft_hundred(a, b, stack, data));
 	else
-		return (ft_fhundred(a, b, stack));
+		return (ft_fhundred(a, b, stack, data));
 }

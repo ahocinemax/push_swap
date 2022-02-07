@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
-
+/*
 static void	ft_free(int **a, int **b)
 {
 	free(*a);
@@ -87,4 +87,4 @@ int	ft_rot_or_rev(t_list *a)
 	}
 	ft_free(&index, &nb_mouv);
 	return (ret);
-}
+}*/

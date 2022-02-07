@@ -12,7 +12,7 @@
 
 #include "../includes/push_swap.h"
 
-void	ft_push(t_list **to, t_list **from, t_stack **stack, char list)
+void	ft_push(t_list **to, t_list **from, t_stack **stack, char *list)
 {
 	t_list	*tmp;
 	t_list	*top;
@@ -29,13 +29,13 @@ void	ft_push(t_list **to, t_list **from, t_stack **stack, char list)
 	top->prev = NULL;
 	*from = top->next;
 	free(tmp);
-	if (list == 'a')
-		ft_stack("pa\n", stack);
+	if (list)
+		ft_stack(list, stack);
 	else
-		ft_stack("pb\n", stack);
+		ft_stack(list, stack);
 }
 
-void	ft_swap(t_list *lst, t_stack **stack, char list)
+void	ft_swap(t_list *lst, t_stack **stack, char *list)
 {
 	int	tmp;
 	int	tmp2;
@@ -52,30 +52,26 @@ void	ft_swap(t_list *lst, t_stack **stack, char list)
 	tmp2 = lst->next->keep;
 	lst->keep = tmp2;
 	lst->next->keep = tmp;
-	if (list == 'a')
-		ft_stack("sa\n", stack);
-	else if (list == 'b')
-		ft_stack("sb\n", stack);
-	else if (list == 's')
-		ft_stack("ss\n", stack);
+	if (list)
+		ft_stack(list, stack);
 }
 
 void	ft_swap_ss(t_list *a, t_list *b, t_stack **stack)
 {
-	ft_swap(a, stack, ' ');
-	ft_swap(b, stack, 's');
+	ft_swap(a, stack, NULL);
+	ft_swap(b, stack, "ss\n");
 }
 
-void	ft_rotate(t_list *lst, t_stack **stack, char list)
+void	ft_rotate(t_list *lst, t_stack **stack, char *list)
 {
 	t_list	*tmp;
-	int		high;
+	int		content;
 	int		index;
 	int		keep;
 
 	if (!lst || !lst->next)
 		return ;
-	high = lst->content;
+	content = lst->content;
 	index = lst->index;
 	keep = lst->keep;
 	while (lst->next)
@@ -86,20 +82,16 @@ void	ft_rotate(t_list *lst, t_stack **stack, char list)
 		lst->keep = tmp->keep;
 		lst = lst->next;
 	}
-	lst->content = high;
+	lst->content = content;
 	lst->index = index;
 	lst->keep = keep;
 	lst->next = NULL;
-	if (list == 'a')
-		ft_stack("ra\n", stack);
-	else if (list == 'b')
-		ft_stack("rb\n", stack);
-	else if (list == 'r')
-		ft_stack("rr\n", stack);
+	if (list)
+		ft_stack(list, stack);
 }
 
 void	ft_rotate_rr(t_list *a, t_list *b, t_stack **stack)
 {
-	ft_rotate(a, stack, ' ');
-	ft_rotate(b, stack, 'r');
+	ft_rotate(a, stack, NULL);
+	ft_rotate(b, stack, "rr\n");
 }

@@ -20,6 +20,7 @@ void	ft_set_index(t_list *temp, t_list **a, t_data **data)
 	*data = malloc(sizeof(t_data));
 	(*data)->head = (*a)->content;
 	(*data)->size = ft_lstsize(*a);
+	(*data)->pow = 1;
 	index = ft_index(&temp);
 	i = 0;
 	while (i < (*data)->size)

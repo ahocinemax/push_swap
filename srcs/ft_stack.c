@@ -78,3 +78,16 @@ void	ft_stack(char *str, t_stack **stack)
 		return ;
 	ft_stack_add_back(stack, new);
 }
+
+int	ft_stacksize(t_stack *stack)
+{
+	int	i;
+
+	i = 0;
+	while (stack)
+	{
+		stack = stack->next;
+		i++;
+	}
+	return (i);
+}

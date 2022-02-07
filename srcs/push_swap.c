@@ -100,6 +100,7 @@ int	main(int argc, char *argv[])
 	free(i);
 	ft_sort(&a, &b, &s, data);
 	ft_stack_print(s);
+	printf("%d operations pou %d elements\n", ft_stacksize(s), data->size);
 	free(data);
 	return (ft_a(str, &a, &b, &s));
 }

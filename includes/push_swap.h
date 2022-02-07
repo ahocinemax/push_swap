@@ -33,6 +33,7 @@ typedef struct s_data
 	int				markup;
 	int				size;
 	int				head;
+	int				pow;
 }					t_data;
 
 // UTILS
@@ -61,5 +62,6 @@ void	ft_swap(t_list *lst, t_stack **stack, char *list);
 void	ft_stack(char *str, t_stack **stack);
 void	ft_stack_clear(t_stack **stack);
 void	ft_stack_print(t_stack *stack);
+int	ft_stacksize(t_stack *stack);
 
 #endif

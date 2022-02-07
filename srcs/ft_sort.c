@@ -67,18 +67,77 @@ static void	ft_five(t_list **a, t_list **b, t_stack **stack)
 	}
 }
 
+int	ft_rota(t_list *a, int pow)
+{
+	t_list	*current;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	current = a;
+	while (current && current->index / 10 != pow)
+	{
+		current = current->next;
+		i++;
+	}
+	current = a;
+	while (current && current->index / 10 != pow)
+	{
+		current = current->prev;
+		j++;
+	}
+	return (i >= j);
+}
+
+int	ft_chunk_left(t_list *a, int pow)
+{
+	t_list	*current;
+
+	current = a;
+	while (current)
+	{
+		if (current->index / 10 == pow)
+			return (1);
+		current = current->next;
+	}
+	return (0);
+}
+
+void	ft_push_b(t_list **a, t_list **b, t_stack **stack, t_data *data)
+{
+	int	pow = 0;
+
+	while (pow != (data->size / 10))
+	{
+		while (ft_chunk_left(*a, pow))
+		{
+			if ((*a)->index / 10 == pow)
+				ft_push(b, a, stack, "pb\n");
+			else if (ft_rota(*a, pow))
+				ft_rotate(*a, stack, "ra\n");
+			else
+				ft_reverse(a, stack, "rra\n");
+		}
+		pow++;
+	}
+}
+
 static void	ft_hundred(t_list **a, t_list **b, t_stack **stack, t_data *data)
 {
-	while (!ft_is_sort(*a) || !ft_is_sort(*b))
+	int	i;
+
+	i = 0;
+	ft_push_b(a, b, stack, data);
+	while (i != data->size)
 	{
-		ft_move(a, b, stack, data);
-		ft_putstr_fd("\nLISTE A : \n", 1);
-		ft_lstprint(*a);
-		ft_lstprint_index(*a);
-		ft_putstr_fd("\nLISTE B : \n", 1);
-		ft_lstprint(*b);
-		ft_lstprint_index(*b);
+		
+		i++;
 	}
+	ft_putstr_fd("\nLISTE A : \n", 1);
+	ft_lstprint_index(*a);
+	ft_putstr_fd("\nLISTE B : \n", 1);
+	ft_lstprint_index(*b);
 }
 
 static void	ft_fhundred(t_list **a, t_list **b, t_stack **stack, t_data *data)

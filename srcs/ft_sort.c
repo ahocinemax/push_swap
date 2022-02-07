@@ -70,13 +70,13 @@ static void	ft_five(t_list **a, t_list **b, t_stack **stack)
 static void	ft_hundred(t_list **a, t_list **b, t_stack **stack, t_data *data)
 {
 	ft_move(a, b, stack, data);
-	/*ft_putstr_fd("\nLISTE A : \n", 1);
+	ft_move(b, a, stack, data);
+	ft_putstr_fd("\nLISTE A : \n", 1);
 	ft_lstprint(*a);
 	ft_lstprint_index(*a);
 	ft_putstr_fd("\nLISTE B : \n", 1);
 	ft_lstprint(*b);
-	ft_lstprint_index(*b);*/
-	ft_move(b, a, stack, data);
+	ft_lstprint_index(*b);
 }
 
 static void	ft_fhundred(t_list **a, t_list **b, t_stack **stack, t_data *data)

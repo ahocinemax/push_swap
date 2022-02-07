@@ -76,6 +76,8 @@ static char	**ft_parse_args(int argc, char **argv, t_list **a, t_list **b)
 
 int	main(int argc, char *argv[])
 {
+
+
 	t_list	*a;
 	t_list	*b;
 	t_list	*i;
@@ -89,23 +91,15 @@ int	main(int argc, char *argv[])
 	str = ft_parse_args(argc, argv, &a, &b);
 	if (!str || ft_check(str, argc, &s))
 		return (ft_error(str, &a, &s));
-	i = NULL;
 	ft_init_lst(&a, str, argc);
-	ft_init_lst(&i, str, argc);
 	if (ft_is_sort(a))
 	{
-		free(i);
-		free(data);
 		return (ft_a(str, &a, &b, &s));
 	}
-	ft_putstr_fd("\nBEFORE : \n", 1);
-	ft_lstprint(a);
-	ft_lstprint_index(a);
+	i = NULL;
+	ft_init_lst(&i, str, argc);
 	ft_set_index(i, &a, &data);
 	free(i);
-	ft_putstr_fd("\nAFTER : \n", 1);
-	ft_lstprint(a);
-	ft_lstprint_index(a);
 	ft_sort(&a, &b, &s, data);
 	ft_stack_print(s);
 	free(data);

@@ -61,7 +61,7 @@ static void	ft_push_wrong(t_list **curr, t_list **scnd, t_stack **s, t_data *d)
 	i = 0;
 	while ((*curr)->index != d->markup)
 		ft_rotate(*curr, s, "ra\n");
-	//printf("%d\n", ft_count_suite((*curr)));
+	ft_count_suite((*curr));
 	while (i < d->size)
 	{
 		if ((*curr)->keep == TRUE)
@@ -92,8 +92,8 @@ void	ft_move(t_list **curr, t_list **scnd, t_stack **s, t_data *data)
 		}
 		else if (actual_count == max_count && (current->index < data->markup))
 			data->markup = current->index;
-		i++;
 		current = current->next;
+		i++;
 	}
 	ft_push_wrong(curr, scnd, s, data);
 	//printf("FININSH\n");

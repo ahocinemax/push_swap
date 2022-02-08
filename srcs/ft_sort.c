@@ -27,7 +27,7 @@ static void	ft_three(t_list **a, t_stack **stack)
 		if (pattern[1] == 'a')
 			ft_swap(*a, stack, "sa\n");
 		else
-			ft_reverse(a, stack, "rra\n");
+			ft_reverse(a, NULL, stack, "rra\n");
 	}
 	else
 	{
@@ -36,7 +36,7 @@ static void	ft_three(t_list **a, t_stack **stack)
 		else
 		{
 			ft_swap(*a, stack, "sa\n");
-			ft_reverse(a, stack, "rra\n");
+			ft_reverse(a, NULL, stack, "rra\n");
 		}
 	}
 }
@@ -54,7 +54,7 @@ static void	ft_five(t_list **a, t_list **b, t_stack **stack)
 		else if (((*a)->next->content != val[MIN] && (*a)->next->next->content \
 				!= val[MIN]) || ((*a)->next->content != val[MAX] && \
 				(*a)->next->next->content != val[MAX]))
-			ft_reverse(a, stack, "rra\n");
+			ft_reverse(a, b, stack, "rra\n");
 		else
 			ft_rotate(*a, stack, "ra\n");
 	}
@@ -65,6 +65,29 @@ static void	ft_five(t_list **a, t_list **b, t_stack **stack)
 		if ((*a)->content > (*a)->next->content)
 			ft_rotate(*a, stack, "ra\n");
 	}
+}
+
+int	ft_rev(t_list *a, int val)
+{
+	t_list	*current;
+	int		i;
+	int		j;
+
+	i = 0;
+	j = 0;
+	current = a;
+	while (current && current->index != val)
+	{
+		current = current->next;
+		i++;
+	}
+	current = a;
+	while (current && current->index != val)
+	{
+		current = current->prev;
+		j++;
+	}
+	return (i >= j);
 }
 
 int	ft_rota(t_list *a, int pow)
@@ -87,7 +110,7 @@ int	ft_rota(t_list *a, int pow)
 		current = current->prev;
 		j++;
 	}
-	return (i >= j);
+	return (i < j);
 }
 
 int	ft_chunk_left(t_list *a, int pow)
@@ -117,7 +140,7 @@ void	ft_push_b(t_list **a, t_list **b, t_stack **stack, t_data *data)
 			else if (ft_rota(*a, pow))
 				ft_rotate(*a, stack, "ra\n");
 			else
-				ft_reverse(a, stack, "rra\n");
+				ft_reverse(a, b, stack, "rra\n");
 		}
 		pow++;
 	}
@@ -127,12 +150,16 @@ static void	ft_hundred(t_list **a, t_list **b, t_stack **stack, t_data *data)
 {
 	int	i;
 
-	i = 0;
 	ft_push_b(a, b, stack, data);
-	while (i != data->size)
+	i = data->size;
+	while (i-- >= 0)
 	{
-		
-		i++;
+		if ((*b)->index == i)
+			ft_push(a, b, stack, "pa\n");
+		else if (ft_rev(*b, i))
+			ft_reverse(b, stack, "rra\n");
+		else
+			ft_rotate(*b, stack, "ra\n");
 	}
 	ft_putstr_fd("\nLISTE A : \n", 1);
 	ft_lstprint_index(*a);

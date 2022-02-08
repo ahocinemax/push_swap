@@ -98,9 +98,15 @@ int	main(int argc, char *argv[])
 	ft_init_lst(&i, str, argc);
 	ft_set_index(i, &a, &data);
 	free(i);
+	ft_putstr_fd("\nLISTE A : \n", 1);
+	ft_lstprint_index(a);
+	ft_putstr_fd("\nLISTE B : \n", 1);
+	ft_lstprint_index(b);
 	ft_sort(&a, &b, &s, data);
 	ft_stack_print(s);
-	printf("%d operations pou %d elements\n", ft_stacksize(s), data->size);
+	if (ft_is_sort(a))
+		ft_putstr_fd("Correct\n", 1);
+	printf("%d operations pour %d elements\n", ft_stacksize(s), data->size);
 	free(data);
 	return (ft_a(str, &a, &b, &s));
 }

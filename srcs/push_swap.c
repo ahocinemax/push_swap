@@ -12,7 +12,7 @@
 
 #include "../includes/push_swap.h"
 
-static int	ft_a(char **str, t_list **a, t_list **b, t_stack **s)
+static int	ft_free_all(char **str, t_list **a, t_list **b, t_stack **s)
 {
 	ft_lstclear(a, NULL);
 	ft_lstclear(b, NULL);
@@ -24,7 +24,7 @@ static int	ft_a(char **str, t_list **a, t_list **b, t_stack **s)
 static int	ft_error(char **str, t_list **a, t_stack **s)
 {
 	ft_putstr_fd("Error\n", _STD_OUT);
-	ft_a(str, a, NULL, s);
+	ft_free_all(str, a, NULL, s);
 	return (-1);
 }
 
@@ -33,6 +33,7 @@ static void	ft_init_lst(t_list **a, char **str, int argc)
 	t_list	*new;
 	int		i;
 
+	*a = NULL;
 	(void)argc;
 	i = 0;
 	while (str[i])
@@ -92,21 +93,13 @@ int	main(int argc, char *argv[])
 	ft_init_lst(&a, str, argc);
 	if (ft_is_sort(a))
 	{
-		return (ft_a(str, &a, &b, &s));
+		return (ft_free_all(str, &a, &b, &s));
 	}
-	i = NULL;
 	ft_init_lst(&i, str, argc);
 	ft_set_index(i, &a, &data);
 	free(i);
-	ft_putstr_fd("\nLISTE A : \n", 1);
-	ft_lstprint_index(a);
-	ft_putstr_fd("\nLISTE B : \n", 1);
-	ft_lstprint_index(b);
 	ft_sort(&a, &b, &s, data);
 	ft_stack_print(s);
-	if (ft_is_sort(a))
-		ft_putstr_fd("Correct\n", 1);
-	printf("%d operations pour %d elements\n", ft_stacksize(s), data->size);
 	free(data);
-	return (ft_a(str, &a, &b, &s));
+	return (ft_free_all(str, &a, &b, &s));
 }

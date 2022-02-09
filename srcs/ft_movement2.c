@@ -12,7 +12,7 @@
 
 #include "../includes/push_swap.h"
 
-void	ft_reverse(t_list **lst, t_list **other, t_stack **stack, char *list)
+void	ft_reverse(t_list **lst, t_stack **stack, char *list)
 {
 	t_list	*last;
 	t_list	*tmp;
@@ -20,12 +20,6 @@ void	ft_reverse(t_list **lst, t_list **other, t_stack **stack, char *list)
 
 	if (!lst || !*lst || !(*lst)->next)
 		return ;
-	if (other && *other && (*other)->next && !ft_strcmp(list, "rra\n") && \
-		(*other)->index > ft_lstlast(*other)->index)
-	{
-		ft_reverse_rr(other, lst, stack);
-		return ;
-	}
 	tmp = *lst;
 	last = ft_lstlast(tmp);
 	new = ft_lstnew(last->content);
@@ -44,8 +38,8 @@ void	ft_reverse(t_list **lst, t_list **other, t_stack **stack, char *list)
 
 void	ft_reverse_rr(t_list **a, t_list **b, t_stack **stack)
 {
-	ft_reverse(a, NULL, stack, NULL);
-	ft_reverse(b, NULL, stack, "rrr\n");
+	ft_reverse(a, stack, NULL);
+	ft_reverse(b, stack, "rrr\n");
 }
 
 int	ft_count_suite(t_list *a)

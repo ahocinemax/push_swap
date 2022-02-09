@@ -29,6 +29,7 @@ void	ft_push(t_list **to, t_list **from, t_stack **stack, char *list)
 	top->prev = NULL;
 	*from = top->next;
 	free(tmp);
+	tmp = NULL;
 	if (list)
 		ft_stack(list, stack);
 	else

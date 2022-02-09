@@ -26,13 +26,13 @@ void	ft_set_index(t_list *temp, t_list **a, t_data **data)
 	while (i < (*data)->size)
 	{
 		while (index[i] != (*a)->content)
-			ft_reverse(a, NULL, NULL, NULL);
+			ft_reverse(a, NULL, NULL);
 		(*a)->index = i;
 		i++;
 	}
 	free(index);
 	while ((*a)->content != (*data)->head)
-		ft_reverse(a, NULL, NULL, NULL);
+		ft_reverse(a, NULL, NULL);
 }
 
 void	ft_lstprint_index(t_list *lst)

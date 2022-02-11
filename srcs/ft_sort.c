@@ -12,7 +12,7 @@
 
 #include "../includes/push_swap.h"
 
-static void	ft_three(t_list **a, t_stack **stack)
+void	ft_three(t_list **a, t_stack **stack)
 {
 	char	*pattern;
 
@@ -21,9 +21,8 @@ static void	ft_three(t_list **a, t_stack **stack)
 	pattern = ft_pattern(*a);
 	if (pattern[0] == 'a')
 	{
-		ft_rotate(*a, stack, "ra\n");
 		ft_swap(*a, stack, "sa\n");
-		ft_reverse(a, stack, "rra\n");
+		ft_rotate(*a, stack, "ra\n");
 	}
 	else if (pattern[0] == 'b')
 	{
@@ -44,19 +43,16 @@ static void	ft_three(t_list **a, t_stack **stack)
 	}
 }
 
-static void	ft_five(t_list **a, t_list **b, t_stack **stack)
+void	ft_five(t_list **a, t_list **b, t_stack **stack)
 {
-	int	val[2];
+	int	size;
 
+	size = ft_lstsize(*a);
 	while (ft_lstsize(*a) > 3)
 	{
-		val[MIN] = ft_smaller(*a);
-		val[MAX] = ft_bigger(*a);
-		if ((*a)->content == val[MIN] || (*a)->content == val[MAX])
+		if ((*a)->index == ft_smaller_index(*a)->index)
 			ft_push(b, a, stack, "pb\n");
-		else if (((*a)->next->content != val[MIN] && (*a)->next->next->content \
-				!= val[MIN]) || ((*a)->next->content != val[MAX] && \
-				(*a)->next->next->content != val[MAX]))
+		else if (ft_rev(*a, ft_smaller_index(*a)->index))
 			ft_reverse(a, stack, "rra\n");
 		else
 			ft_rotate(*a, stack, "ra\n");
@@ -65,20 +61,8 @@ static void	ft_five(t_list **a, t_list **b, t_stack **stack)
 		ft_three(a, stack);
 	else if (!ft_is_sort(*a) && ft_lstsize(*a) == 2)
 		ft_swap(*a, stack, "sa\n");
-	while (ft_lstsize(*a) < 5)
-	{
+	while (ft_lstsize(*a) < size)
 		ft_push(a, b, stack, "pa\n");
-		if ((*a)->content > (*a)->next->content)
-			ft_rotate(*a, stack, "ra\n");
-	}
-}
-
-static void	ft_fhundred(t_list **a, t_list **b, t_stack **stack, t_data *data)
-{
-	(void)a;
-	(void)b;
-	(void)stack;
-	(void)data;
 }
 
 void	ft_sort(t_list **a, t_list **b, t_stack **stack, t_data *data)
@@ -98,5 +82,5 @@ void	ft_sort(t_list **a, t_list **b, t_stack **stack, t_data *data)
 	else if (data->size <= 100)
 		return (ft_hundred(a, b, stack));
 	else
-		return (ft_fhundred(a, b, stack, data));
+		return (ft_fhundred(a, b, stack));
 }

@@ -26,7 +26,7 @@ void	ft_push(t_list **to, t_list **from, t_stack **stack, char *list)
 	new->keep = top->keep;
 	ft_lstadd_front(to, new);
 	tmp = *from;
-	top->prev = NULL;
+	top->prev = ft_lstlast(*from);
 	*from = top->next;
 	free(tmp);
 	tmp = NULL;
@@ -86,7 +86,6 @@ void	ft_rotate(t_list *lst, t_stack **stack, char *list)
 	lst->content = content;
 	lst->index = index;
 	lst->keep = keep;
-	lst->next = NULL;
 	if (list)
 		ft_stack(list, stack);
 }

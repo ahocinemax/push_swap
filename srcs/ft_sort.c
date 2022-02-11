@@ -82,5 +82,5 @@ void	ft_sort(t_list **a, t_list **b, t_stack **stack, t_data *data)
 	else if (data->size <= 100)
 		return (ft_hundred(a, b, stack));
 	else
-		return (ft_fhundred(a, b, stack));
+		return (ft_hundred(a, b, stack));
 }

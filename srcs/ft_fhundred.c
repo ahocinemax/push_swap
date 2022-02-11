@@ -116,6 +116,7 @@ void	ft_fhundred(t_list **a, t_list **b, t_stack **stack)
 {
 	int	i;
 
+	printf("NOT YET !!!!!!!!!!!!!!!!!!!!\n");
 	ft_push_b(a, b, stack);
 	if (*a && !ft_is_sort(*a))
 	{

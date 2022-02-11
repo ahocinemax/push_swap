@@ -52,7 +52,7 @@ static int	ft_rota(t_list *a, int pow)
 	if (!a)
 		return (-1);
 	current = a;
-	while ((current->index / 10) * 10 != pow)
+	while ((current->index / 10) * 10 != pow && i <= ft_lstsize(a))
 	{
 		i++;
 		current = current->next;
@@ -60,7 +60,7 @@ static int	ft_rota(t_list *a, int pow)
 			break ;
 	}
 	current = ft_lstlast(a);
-	while ((current->index / 10) * 10 != pow)
+	while ((current->index / 10) * 10 != pow && j <= ft_lstsize(a))
 	{
 		j++;
 		current = current->prev;
@@ -100,8 +100,7 @@ static void	ft_push_b(t_list **a, t_list **b, t_stack **stack)
 
 	index_max = (ft_bigger_index((*a))->index / 10) * 10;
 	pow = ((index_max / 2) / 10) * 10;
-	i = ((index_max / 2) / 10) * 10;
-	//printf("looking for %d and %d\n", pow, i);
+	i = ((index_max / 2) / 10) * 10 - 10;
 	if (ft_lstsize(*a) > 10)
 	{	while (*a && pow < index_max)
 		{
@@ -111,7 +110,7 @@ static void	ft_push_b(t_list **a, t_list **b, t_stack **stack)
 				((*a)->index / 10) * 10 == i)
 				{
 					ft_push(b, a, stack, "pb\n");
-					if ((*b)->next && ((*b)->index / 10) * 10 == pow)
+					if ((*b)->next && ((*b)->index / 10) * 10 == i)
 						ft_rotate(*b, stack, "rb\n");
 				}
 				else if (ft_rota(*a, pow) || ft_rota(*a, i))
@@ -123,8 +122,6 @@ static void	ft_push_b(t_list **a, t_list **b, t_stack **stack)
 			if (i >= 0)
 				i -= 10;
 		}
-		while (*b && (ft_lstlast(*b)->index / 10) * 10 != index_max - 10)
-			ft_reverse(b, stack, "rrb\n");
 	}
 	pow = 0;
 	if (ft_lstsize(*a) > 5 && ft_lstsize(*a) <= 10)

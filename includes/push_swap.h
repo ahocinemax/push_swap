@@ -28,25 +28,13 @@ typedef struct s_stack
 	char			*str;
 }					t_stack;
 
-typedef struct s_data
-{
-	int				markup;
-	int				size;
-	int				head;
-	int				pow;
-}					t_data;
-
 // UTILS
-void	ft_move(t_list **a, t_list **b, t_stack **stack, t_data *data);
-void	ft_sort(t_list **a, t_list **b, t_stack **stack, t_data *data);
-void	ft_set_index(t_list *i, t_list **a, t_data **data);
+void	ft_sort(t_list **a, t_list **b, t_stack **stack);
 int		ft_check(char **str, int size, t_stack **stack);
-void	ft_lstprint_index(t_list *lst);
+void	ft_set_index(t_list *i, t_list **a);
 t_list	*ft_smaller_index(t_list *lst);
 t_list	*ft_bigger_index(t_list *lst);
 int		ft_rev(t_list *a, int val);
-int		ft_count_suite(t_list *a);
-int		ft_rot_or_rev(t_list *a);
 int		ft_smaller(t_list *lst);
 int		ft_bigger(t_list *lst);
 char	*ft_pattern(t_list *a);
@@ -65,9 +53,9 @@ void	ft_swap(t_list *lst, t_stack **stack, char *list);
 void	ft_stack(char *str, t_stack **stack);
 void	ft_stack_clear(t_stack **stack);
 void	ft_stack_print(t_stack *stack);
-int		ft_stacksize(t_stack *stack);
 
 // FONCTION TRI
+void	ft_push_beta(t_list **a, t_list **b, t_stack **stack);
 void	ft_fhundred(t_list **a, t_list **b, t_stack **stack);
 void	ft_hundred(t_list **a, t_list **b, t_stack **stack);
 void	ft_five(t_list **a, t_list **b, t_stack **stack);

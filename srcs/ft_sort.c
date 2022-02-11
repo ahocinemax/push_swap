@@ -12,6 +12,18 @@
 
 #include "../includes/push_swap.h"
 
+static void	ft_a(t_list **a, t_stack **stack)
+{
+	ft_swap(*a, stack, "sa\n");
+	ft_rotate(*a, stack, "ra\n");
+}
+
+static void	ft_b(t_list **a, t_stack **stack)
+{
+	ft_swap(*a, stack, "sa\n");
+	ft_reverse(a, stack, "rra\n");
+}
+
 void	ft_three(t_list **a, t_stack **stack)
 {
 	char	*pattern;
@@ -20,10 +32,7 @@ void	ft_three(t_list **a, t_stack **stack)
 		return ;
 	pattern = ft_pattern(*a);
 	if (pattern[0] == 'a')
-	{
-		ft_swap(*a, stack, "sa\n");
-		ft_rotate(*a, stack, "ra\n");
-	}
+		ft_a(a, stack);
 	else if (pattern[0] == 'b')
 	{
 		if (pattern[1] == 'a')
@@ -36,10 +45,7 @@ void	ft_three(t_list **a, t_stack **stack)
 		if (pattern[1] == 'a')
 			ft_rotate(*a, stack, "ra\n");
 		else
-		{
-			ft_swap(*a, stack, "sa\n");
-			ft_reverse(a, stack, "rra\n");
-		}
+			ft_b(a, stack);
 	}
 }
 
@@ -65,22 +71,20 @@ void	ft_five(t_list **a, t_list **b, t_stack **stack)
 		ft_push(a, b, stack, "pa\n");
 }
 
-void	ft_sort(t_list **a, t_list **b, t_stack **stack, t_data *data)
+void	ft_sort(t_list **a, t_list **b, t_stack **stack)
 {
-	if (data->size < 2)
+	if (ft_lstsize(*a) < 2)
 		return ;
-	else if (data->size == 2)
+	else if (ft_lstsize(*a) == 2)
 	{
 		if ((*a)->content > (*a)->next->content)
 			ft_swap(*a, stack, "sa\n");
 		return ;
 	}
-	else if (data->size == 3)
+	else if (ft_lstsize(*a) == 3)
 		return (ft_three(a, stack));
-	else if (data->size <= 5)
+	else if (ft_lstsize(*a) <= 5)
 		return (ft_five(a, b, stack));
-	else if (data->size <= 100)
-		return (ft_hundred(a, b, stack));
 	else
 		return (ft_hundred(a, b, stack));
 }

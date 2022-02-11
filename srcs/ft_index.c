@@ -12,18 +12,16 @@
 
 #include "../includes/push_swap.h"
 
-void	ft_set_index(t_list *temp, t_list **a, t_data **data)
+void	ft_set_index(t_list *temp, t_list **a)
 {
 	int	*index;
+	int	tmp;
 	int	i;
 
-	*data = malloc(sizeof(t_data));
-	(*data)->head = (*a)->content;
-	(*data)->size = ft_lstsize(*a);
-	(*data)->pow = 1;
 	index = ft_index(&temp);
+	tmp = (*a)->content;
 	i = 0;
-	while (i < (*data)->size)
+	while (i < ft_lstsize(*a))
 	{
 		while (index[i] != (*a)->content)
 			ft_reverse(a, NULL, NULL);
@@ -31,70 +29,6 @@ void	ft_set_index(t_list *temp, t_list **a, t_data **data)
 		i++;
 	}
 	free(index);
-	while ((*a)->content != (*data)->head)
+	while ((*a)->content != tmp)
 		ft_reverse(a, NULL, NULL);
-}
-
-void	ft_lstprint_index(t_list *lst)
-{
-	int	value;
-
-	if (!lst)
-		ft_putstr_fd("liste vide", _STD_OUT);
-	else
-	{
-		while (lst)
-		{
-			value = lst->index;
-			ft_putchar_fd('[', _STD_OUT);
-			ft_putnbr_fd(value, _STD_OUT);
-			ft_putstr_fd("] ", _STD_OUT);
-			lst = lst->next;
-		}
-	}
-	ft_putchar_fd('\n', _STD_OUT);
-}
-
-static void	ft_push_wrong(t_list **curr, t_list **scnd, t_stack **s, t_data *d)
-{
-	int	i;
-
-	i = 0;
-	while ((*curr)->index != d->markup)
-		ft_rotate(*curr, s, "ra\n");
-	ft_count_suite((*curr));
-	while (i < d->size)
-	{
-		if ((*curr)->keep == TRUE)
-			ft_rotate(*curr, s, "ra\n");
-		else
-			ft_push(scnd, curr, s, "pb\n");
-		i++;
-	}
-}
-
-void	ft_move(t_list **curr, t_list **scnd, t_stack **s, t_data *data)
-{
-	t_list	*current;
-	int		actual_count;
-	int		max_count;
-	int		i;
-
-	current = *curr;
-	max_count = 0;
-	i = 0;
-	while (i < ft_lstsize(*curr))
-	{
-		actual_count = ft_count_suite(current);
-		if (actual_count > max_count)
-		{
-			data->markup = current->index;
-			max_count = actual_count;
-		}
-		else if (actual_count == max_count && (current->index < data->markup))
-			data->markup = current->index;
-		current = current->next;
-		i++;
-	}
-	ft_push_wrong(curr, scnd, s, data);
 }

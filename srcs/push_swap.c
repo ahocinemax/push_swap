@@ -17,6 +17,8 @@ static int	ft_free_all(char **str, t_list **a, t_list **b, t_stack **s)
 	ft_lstclear(a, NULL);
 	ft_lstclear(b, NULL);
 	ft_stack_clear(s);
+	while (*str)
+		free((*str)++);
 	free(str);
 	return (0);
 }
@@ -80,7 +82,6 @@ int	main(int argc, char *argv[])
 	t_list	*b;
 	t_list	*i;
 	t_stack	*s;
-	t_data	*data;
 	char	**str;
 
 	if (argc < 2)
@@ -94,10 +95,9 @@ int	main(int argc, char *argv[])
 		return (ft_free_all(str, &a, &b, &s));
 	i = NULL;
 	ft_init_lst(&i, str, argc);
-	ft_set_index(i, &a, &data);
+	ft_set_index(i, &a);
 	free(i);
-	ft_sort(&a, &b, &s, data);
+	ft_sort(&a, &b, &s);
 	ft_stack_print(s);
-	free(data);
 	return (ft_free_all(str, &a, &b, &s));
 }

@@ -91,26 +91,13 @@ int	main(int argc, char *argv[])
 		return (ft_error(str, &a, &s));
 	ft_init_lst(&a, str, argc);
 	if (ft_is_sort(a))
-	{
 		return (ft_free_all(str, &a, &b, &s));
-	}
 	i = NULL;
 	ft_init_lst(&i, str, argc);
 	ft_set_index(i, &a, &data);
 	free(i);
 	ft_sort(&a, &b, &s, data);
 	ft_stack_print(s);
-	/*if (ft_is_sort(a) && ft_lstsize(a) == data->size && !ft_lstsize(b))
-		ft_putstr_fd("Correct\n", 1);
-	else
-	{
-		ft_putstr_fd("False\n", 1);
-	}
-	ft_putstr_fd("LISTE A = ", 1);
-	ft_lstprint_index(a);
-	ft_putstr_fd("LISTE B = ", 1);
-	ft_lstprint_index(b);*/
-	//printf("%d operations pour %d elements\n", ft_stacksize(s), data->size);
 	free(data);
 	return (ft_free_all(str, &a, &b, &s));
 }

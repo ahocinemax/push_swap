@@ -94,6 +94,7 @@ int	main(int argc, char *argv[])
 	i = NULL;
 	ft_init_lst(&i, str, argc);
 	ft_set_index(i, &a);
+	ft_lstclear(&i, NULL);
 	free(i);
 	ft_sort(&a, &b, &s);
 	ft_stack_print(s);

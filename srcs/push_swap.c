@@ -14,12 +14,9 @@
 
 static int	ft_free_all(char **str, t_list **a, t_list **b, t_stack **s)
 {
-	int	i = 0;
 	ft_lstclear(a, NULL);
 	ft_lstclear(b, NULL);
 	ft_stack_clear(s);
-	while (str[i])
-		free(str[i++]);
 	free(str);
 	return (0);
 }
@@ -70,7 +67,7 @@ static char	**ft_parse_args(int argc, char **argv, t_list **a, t_list **b)
 		return (NULL);
 	while (i < argc || argv[i])
 	{
-		str[i] = ft_strdup(argv[i]);
+		str[i] = argv[i];
 		i++;
 	}
 	str[i] = NULL;
@@ -97,7 +94,6 @@ int	main(int argc, char *argv[])
 	i = NULL;
 	ft_init_lst(&i, str, argc);
 	ft_set_index(i, &a);
-	ft_lstclear(&i, NULL);
 	free(i);
 	ft_sort(&a, &b, &s);
 	ft_stack_print(s);

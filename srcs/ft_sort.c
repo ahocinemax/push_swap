@@ -73,18 +73,18 @@ void	ft_five(t_list **a, t_list **b, t_stack **stack)
 
 void	ft_sort(t_list **a, t_list **b, t_stack **stack)
 {
-	if (ft_lstsize(*a) < 2)
+	if (*a && ft_lstsize(*a) < 2)
 		return ;
-	else if (ft_lstsize(*a) == 2)
+	else if (*a && ft_lstsize(*a) == 2)
 	{
 		if ((*a)->content > (*a)->next->content)
 			ft_swap(*a, stack, "sa\n");
 		return ;
 	}
-	else if (ft_lstsize(*a) == 3)
+	else if (*a && ft_lstsize(*a) == 3)
 		return (ft_three(a, stack));
-	else if (ft_lstsize(*a) <= 5)
+	else if (*a && ft_lstsize(*a) <= 5)
 		return (ft_five(a, b, stack));
-	else
+	else if (*a)
 		return (ft_hundred(a, b, stack));
 }

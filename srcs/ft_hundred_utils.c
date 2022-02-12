@@ -77,7 +77,7 @@ void	ft_hundred(t_list **a, t_list **b, t_stack **stack)
 		else if (ft_lstsize(*a) == 2)
 			ft_swap(*a, stack, "sa\n");
 	}
-	while (ft_lstsize(*b) && i >= 0)
+	while (*b && ft_lstsize(*b) && i >= 0)
 	{
 		i = ft_bigger_index(*b)->index;
 		if ((*b)->index == i)

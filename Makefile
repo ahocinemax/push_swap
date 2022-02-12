@@ -4,7 +4,7 @@ SRCS	= srcs/ft_best_path.c srcs/ft_check.c srcs/ft_fhundred.c srcs/ft_hundred_ut
 	  srcs/ft_stack.c srcs/push_swap.c srcs/utils.c
 HEADER	= includes/push_swap.h
 CC		= gcc
-FLAGS	= -Wall -Werror -Wextra -g -fsanitize=address
+FLAGS	= -Wall -Werror -Wextra
 LIBFT	= libft/libft.a
 
 all : $(LIBFT) $(NAME) 

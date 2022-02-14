@@ -6,18 +6,18 @@
 /*   By: ahocine <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/14 18:03:02 by ahocine           #+#    #+#             */
-/*   Updated: 2022/02/14 18:03:04 by ahocine          ###   ########.fr       */
+/*   Updated: 2022/02/14 19:24:06 by ahocine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void    ft_free_all2(char **split)
+void	ft_free_all2(char **split)
 {
-    int i;
+	int	i;
 
-    i = 0;
-    while (split[i])
-        free(split[i++]);
-    free(split);
+	i = 0;
+	while (split[i])
+		free(split[i++]);
+	free(split);
 }

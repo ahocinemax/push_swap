@@ -15,12 +15,16 @@
 static int	ft_check_int(char *str)
 {
 	int	len;
+	int	i;
 
+	i = 0;
 	if (!str)
 		return (1);
 	if (str[0] == '-')
 		str++;
-	len = ft_strlen(str);
+	while (str[i] == '0')
+		i++; 
+	len = ft_strlen(str) - i;
 	if (len > 10)
 		return (1);
 	else if (len == 10)

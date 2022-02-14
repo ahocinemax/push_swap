@@ -12,19 +12,21 @@
 
 #include "../includes/push_swap.h"
 
-static int	ft_free_all(char **str, t_list **a, t_list **b, t_stack **s)
+static int	ft_free_all(char **str, t_list **a, t_list **b, int argc)
 {
 	ft_lstclear(a, NULL);
 	ft_lstclear(b, NULL);
-	ft_stack_clear(s);
-	free(str);
+	if (argc == 1)
+		ft_free_all2(str);
+	else
+		free(str);
 	return (0);
 }
 
-static int	ft_error(char **str, t_list **a, t_stack **s)
+static int	ft_error(char **str, t_list **a, int argc)
 {
 	ft_putstr_fd("Error\n", _STD_OUT);
-	ft_free_all(str, a, NULL, s);
+	ft_free_all(str, a, NULL, argc);
 	return (-1);
 }
 
@@ -87,10 +89,10 @@ int	main(int argc, char *argv[])
 	argc--;
 	str = ft_parse_args(argc, argv, &a, &b);
 	if (!str || ft_check(str, argc, &s))
-		return (ft_error(str, &a, &s));
+		return (ft_error(str, &a, argc));
 	ft_init_lst(&a, str, argc);
 	if (ft_is_sort(a))
-		return (ft_free_all(str, &a, &b, &s));
+		return (ft_free_all(str, &a, &b, argc));
 	i = NULL;
 	ft_init_lst(&i, str, argc);
 	ft_set_index(i, &a);
@@ -98,5 +100,6 @@ int	main(int argc, char *argv[])
 	free(i);
 	ft_sort(&a, &b, &s);
 	ft_stack_print(s);
-	return (ft_free_all(str, &a, &b, &s));
+	ft_stack_clear(&s);
+	return (ft_free_all(str, &a, &b, argc));
 }

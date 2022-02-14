@@ -20,4 +20,5 @@ void	ft_free_all2(char **split)
 	while (split[i])
 		free(split[i++]);
 	free(split);
+	split = NULL;
 }

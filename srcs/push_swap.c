@@ -25,7 +25,7 @@ static int	ft_free_all(char **str, t_list **a, t_list **b, int argc)
 
 static int	ft_error(char **str, t_list **a, int argc)
 {
-	ft_putstr_fd("Error\n", _STD_OUT);
+	ft_putstr_fd("Error\n", _STD_ERR);
 	ft_free_all(str, a, NULL, argc);
 	return (-1);
 }

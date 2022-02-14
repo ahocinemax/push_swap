@@ -6,7 +6,7 @@
 /*   By: ahocine <ahocine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 19:47:15 by ahocine           #+#    #+#             */
-/*   Updated: 2022/01/25 19:47:18 by ahocine          ###   ########.fr       */
+/*   Updated: 2022/02/14 21:44:39 by ahocine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,24 +14,30 @@
 
 static int	ft_check_int(char *str)
 {
-	int	len;
-	int	i;
+	int		len;
+	int		i;
+	int		n;
+	char	*max;
 
 	i = 0;
+	n = 0;
 	if (!str)
 		return (1);
 	if (str[0] == '-')
+	{
+		max = "2147483648";
 		str++;
+	}
+	else
+		max = "2147483647";
 	while (str[i] == '0')
-		i++; 
+		i++;
 	len = ft_strlen(str) - i;
 	if (len > 10)
 		return (1);
 	else if (len == 10)
-	{
-		if (ft_strcmp(str, "2147483648") > 0)
+		if (ft_strcmp(str, max) > 0)
 			return (1);
-	}
 	return (0);
 }
 

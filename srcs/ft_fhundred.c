@@ -33,7 +33,7 @@ static int	ft_chunk_left(t_list *a, int pow)
 
 static int	ft_rota(t_list *a, int pow)
 {
-	t_list	*current;
+	t_list	*curr;
 	int		i;
 	int		j;
 
@@ -41,17 +41,17 @@ static int	ft_rota(t_list *a, int pow)
 	j = 1;
 	if (!a)
 		return (-1);
-	current = a;
-	while (current && (current->index / 10) * 10 != pow && i <= ft_lstsize(a))
+	curr = a;
+	while (curr && (curr->index / 10) * 10 != pow && i <= ft_lstsize(a))
 	{
 		i++;
-		current = current->next;
+		curr = curr->next;
 	}
-	current = ft_lstlast(a);
-	while (current && (current->index / 10) * 10 != pow && j <= ft_lstsize(a))
+	curr = ft_lstlast(a);
+	while (curr && (curr->index / 10) * 10 != pow && j <= ft_lstsize(a))
 	{
 		j++;
-		current = current->prev;
+		curr = curr->prev;
 	}
 	if (i < j)
 		return (j - i);

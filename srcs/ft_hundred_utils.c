@@ -67,6 +67,8 @@ void	ft_hundred(t_list **a, t_list **b, t_stack **stack)
 {
 	int	i;
 
+	if (!*a)
+		return ;
 	ft_push_b(a, b, stack);
 	if (*a && !ft_is_sort(*a))
 	{

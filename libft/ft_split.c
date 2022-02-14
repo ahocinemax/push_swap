@@ -87,7 +87,7 @@ char	**ft_split(const char *str, char sep)
 		{
 			arr[index++] = ft_malloc_word(s_line, (char *)&str[i], &i);
 			if (!arr[index - 1])
-				free(arr);
+				ft_free_all(arr);
 		}
 		while ((char)str[i] && (char)str[i] == sep)
 			i++;

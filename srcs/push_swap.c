@@ -41,12 +41,7 @@ static void	ft_init_lst(t_list **a, char **str)
 	while (str[i])
 	{
 		new = ft_lstnew(ft_atoi(str[i]));
-		if (!new)
-		{
-			ft_lstclear(a, NULL);
-			return ;
-		}
-		if (*a && ft_is_in_lst(new->content, *a))
+		if (!new || (*a && ft_is_in_lst(new->content, *a)))
 		{
 			ft_lstclear(a, NULL);
 			return ;

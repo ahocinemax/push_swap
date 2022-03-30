@@ -54,7 +54,7 @@ void	ft_five(t_list **a, t_list **b, t_stack **stack)
 	int	size;
 
 	size = ft_lstsize(*a);
-	while (ft_lstsize(*a) > 3)
+	while (ft_lstsize(*a) > 3 && !ft_is_sort(*a))
 	{
 		if ((*a)->index == ft_smaller_index(*a)->index)
 			ft_push(b, a, stack, "pb\n");

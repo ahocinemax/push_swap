@@ -6,7 +6,7 @@
 /*   By: ahocine <ahocine@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/25 19:47:15 by ahocine           #+#    #+#             */
-/*   Updated: 2022/01/25 19:47:18 by ahocine          ###   ########.fr       */
+/*   Updated: 2022/04/13 17:47:42 by ahocine          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,23 +37,22 @@ static int	ft_check_int(char *str)
 	i = 0;
 	if (!str)
 		return (EXIT_FAILURE);
-	if (*str == '-')
+	if (*str == '-' || *str == '+')
 	{
-		max = "2147483648";
+		if (*str == '-')
+			max = "2147483648";
 		str++;
 	}
 	else
 		max = "2147483647";
-	while (str[i] == '0')
+	while (str[i] == '0' && str[i + 1])
 		i++;
 	len = ft_strlen(str) - i;
 	if (len > 10 || !*str)
 		return (EXIT_FAILURE);
 	else if (len == 10)
-	{
 		if (ft_strcmp(str, max) > 0)
 			return (EXIT_FAILURE);
-	}
 	return (EXIT_SUCCESS);
 }
 
@@ -61,14 +60,19 @@ static int	ft_check_str(char **str)
 {
 	int	i;
 	int	j;
+	int	c;
 
 	i = 0;
 	while (str[i])
 	{
 		j = 0;
+		c = 0;
 		while (str[i][j])
 		{
-			if (!ft_isdigit(str[i][j]) && str[i][j] != '-' && str[i][j] != '+')
+			if (str[i][j] == '-' || str[i][j] == '+')
+				c++;
+			if ((!ft_isdigit(str[i][j]) && str[i][j] != '-' && str[i][j] != '+') \
+				|| c > 1)
 				return (EXIT_FAILURE);
 			j++;
 		}

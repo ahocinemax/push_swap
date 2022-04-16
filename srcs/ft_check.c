@@ -71,8 +71,8 @@ static int	ft_check_str(char **str)
 		{
 			if (str[i][j] == '-' || str[i][j] == '+')
 				c++;
-			if ((!ft_isdigit(str[i][j]) && str[i][j] != '-' && str[i][j] != '+') \
-				|| c > 1)
+			if ((!ft_isdigit(str[i][j]) && str[i][j] != '-' && \
+				str[i][j] != '+') || c > 1)
 				return (EXIT_FAILURE);
 			j++;
 		}

@@ -99,6 +99,8 @@ int	main(int argc, char *argv[])
 	ft_init_lst(&i, str);
 	ft_set_index(i, &a);
 	ft_lstclear(&i, NULL);
+	// printf("size of A at begining : %d\n", ft_lstsize(a));
+	// printf("size of B at begining : %d\n", ft_lstsize(b));
 	ft_sort(&a, &b, &s);
 	ft_stack_print(s);
 	ft_stack_clear(&s);

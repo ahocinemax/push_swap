@@ -51,27 +51,40 @@ void	ft_five_hundred(t_list **a, t_list **b, t_stack **stack)
 		{
 			if (((*a)->index / 100) * 100 == index_high || \
 			((*a)->index / 100) * 100 == index_low)
-				ft_utils2(index_high, a, b, stack);
+				ft_utils2(index_low, a, b, stack);
 			else if (ft_rota(*a, index_high))
 				ft_rotate(*a, stack, "ra\n");
 			else
 				ft_reverse(a, stack, "rra\n");
 		}
 		if (((*a)->index / 100) * 100 == index_high || \
-			((*a)->index / 100) * 100 == index_low)
-				ft_utils2(index_high, a, b, stack);
+		((*a)->index / 100) * 100 == index_low)
+			ft_utils2(index_low, a, b, stack);
 		index_high += 100;
 		index_low -= 100;
 	}
-	ft_hundred(b, a, stack);
-    // ft_lstprint_index(*a);
-	// printf("%d\n", ft_lstsize(*a));
-	// ft_lstprint_index(*b);
-	// printf("%d\n", ft_lstsize(*b));
-	return ;
+	int i = 0;
+	while (*a && ft_lstsize(*a) > 5 && i >= 0)
+	{
+		i = ft_smaller_index(*a)->index;
+		if ((*a)->index == i)
+			ft_push(b, a, stack, "pb\n");
+		else if (ft_rev(*a, i))
+			ft_reverse(a, stack, "rra\n");
+		else
+			ft_rotate(*a, stack, "ra\n");
+	}
+	ft_five(a, b, stack);
+	i = (ft_bigger_index(*a)->index / 100) * 100;
+	while (((*b)->index / 100) * 100 == i)
+		ft_push(a, b, stack, "pa\n");
+	printf("\nLIST A\n");
+	ft_lstprint_index(*a);
+	printf("Nb of elements : %d\n", ft_lstsize(*a));
+	printf("\nLIST B\n");
+	ft_lstprint_index(*b);
+	printf("%d\n", ft_lstsize(*b));
 }
-
-
 
 void	ft_lstprint_index(t_list *lst)
 {

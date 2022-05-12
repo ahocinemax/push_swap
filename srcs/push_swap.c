@@ -102,7 +102,12 @@ int	main(int argc, char *argv[])
 	// printf("size of A at begining : %d\n", ft_lstsize(a));
 	// printf("size of B at begining : %d\n", ft_lstsize(b));
 	ft_sort(&a, &b, &s);
-	ft_stack_print(s);
+	// ft_lstprint_index(a);
+	// printf("%d\n\n", ft_lstsize(a));
+	// ft_lstprint_index(b);
+	// printf("%d element in B, A is sorted : %d\n", ft_lstsize(b), ft_is_sort(a));
+	printf("%d operations\n", ft_stack_size(s));
+	// ft_stack_print(s);
 	ft_stack_clear(&s);
 	return (ft_free_all(str, &a, &b, argc));
 }

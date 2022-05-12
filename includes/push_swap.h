@@ -30,6 +30,7 @@ typedef struct s_stack
 
 // UTILS
 void	ft_utils(int i, t_list **a, t_list **b, t_stack **stack);
+void	ft_push_b(t_list **a, t_list **b, t_stack **stack);
 void	ft_sort(t_list **a, t_list **b, t_stack **stack);
 int		ft_check(char **str, int size, t_stack **stack);
 void	ft_set_index(t_list *i, t_list **a);
@@ -58,6 +59,7 @@ void	ft_swap(t_list *lst, t_stack **stack, char *list);
 void	ft_stack(char *str, t_stack **stack);
 void	ft_stack_clear(t_stack **stack);
 void	ft_stack_print(t_stack *stack);
+int		ft_stack_size(t_stack *stack);
 
 // FONCTION TRI
 void	ft_five_hundred(t_list **a, t_list **b, t_stack **stack);

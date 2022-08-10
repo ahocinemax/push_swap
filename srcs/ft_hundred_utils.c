@@ -41,7 +41,7 @@ int	ft_rev(t_list *a, int val)
 	return (i > j);
 }
 
-static void	ft_push_b(t_list **a, t_list **b, t_stack **stack)
+void	ft_push_b(t_list **a, t_list **b, t_stack **stack)
 {
 	int	index_to_push;
 
@@ -90,4 +90,17 @@ void	ft_hundred(t_list **a, t_list **b, t_stack **stack)
 		else
 			ft_rotate(*b, stack, "rb\n");
 	}
+}
+
+int	ft_stack_size(t_stack *lst)
+{
+	size_t	count;
+
+	count = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		count++;
+	}
+	return (count);
 }

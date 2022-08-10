@@ -12,7 +12,7 @@
 
 #include "../includes/push_swap.h"
 
-static int	ft_chunk_left(t_list *a, int pow)
+int	ft_chunk_left(t_list *a, int pow)
 {
 	t_list	*current;
 	int		i;
@@ -31,7 +31,7 @@ static int	ft_chunk_left(t_list *a, int pow)
 	return (0);
 }
 
-static int	ft_rota(t_list *a, int pow)
+int	ft_rota(t_list *a, int pow)
 {
 	t_list	*current;
 	int		i;
@@ -59,7 +59,7 @@ static int	ft_rota(t_list *a, int pow)
 		return (-1);
 }
 
-static void	ft_utils(int i, t_list **a, t_list **b, t_stack **stack)
+void	ft_utils(int i, t_list **a, t_list **b, t_stack **stack)
 {
 	ft_push(b, a, stack, "pb\n");
 	if ((*b)->next && ((*b)->index / 10) * 10 == i)

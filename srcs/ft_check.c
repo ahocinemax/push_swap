@@ -93,7 +93,11 @@ static int	ft_check_double(char **str)
 		while (str[j])
 		{
 			if (ft_atoi(str[i]) == ft_atoi(str[j]))
+			{
+				ft_putstr_fd("Double trouve\n", _STD_ERR);
+				printf("%s %d\n", str[i], i);
 				return (EXIT_FAILURE);
+			}
 			j++;
 		}
 		i++;

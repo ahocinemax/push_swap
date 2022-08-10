@@ -84,6 +84,8 @@ void	ft_sort(t_list **a, t_list **b, t_stack **stack)
 		return (ft_three(a, stack));
 	else if (ft_lstsize(*a) <= 5)
 		return (ft_five(a, b, stack));
-	else
+	else if (ft_lstsize(*a) <= 399)
 		return (ft_hundred(a, b, stack));
+	else
+		return (ft_five_hundred(a, b, stack));
 }
